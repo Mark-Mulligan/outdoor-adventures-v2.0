@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const connection = require('./config/connection');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -10,6 +11,15 @@ app.use(express.static('.'));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json({ limit: '50mb' }));
 app.use(cors());
+
+connection.connect((err) => {
+  if (err) {
+    console.error(`error connecting: ${err.stack}`);
+    return;
+  }
+
+  console.log(`connected as id ${connection.threadId}`);
+});
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
