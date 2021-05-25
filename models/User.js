@@ -10,6 +10,14 @@ const User = {
       },
     );
   },
+
+  findOne: (googleId, errCb, cb) => {
+    orm.findUser(
+      googleId,
+      (err) => errCb(err),
+      (result) => cb(result),
+    );
+  },
 };
 
 module.exports = User;

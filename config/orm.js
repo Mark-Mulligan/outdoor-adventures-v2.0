@@ -13,6 +13,18 @@ const orm = {
       return cb(result);
     });
   },
+
+  findUser: (googleId, errCb, cb) => {
+    const queryString = 'SELECT * FROM users WHERE google_id = ?;';
+
+    connection.query(queryString, [googleId], (err, result) => {
+      if (err) {
+        return errCb(err);
+      }
+
+      return cb(result);
+    });
+  },
 };
 
 module.exports = orm;
