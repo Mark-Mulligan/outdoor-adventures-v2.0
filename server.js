@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const axios = require('axios');
 
 const connection = require('./config/connection');
 
@@ -18,6 +19,15 @@ connection.connect((err) => {
     console.error(`error connecting: ${err.stack}`);
     return;
   }
+
+  axios.get(`https://developer.nps.gov/api/v1/parks?api_key=${process.env.NATIONAL_PARKS_APIKEY}&limit=467`).then(
+    (response) => {
+      console.log(response.data);
+    },
+    (error) => {
+      console.log(error);
+    },
+  );
 
   console.log(`connected as id ${connection.threadId}`);
 });
