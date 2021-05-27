@@ -1,8 +1,12 @@
+/* eslint-disable object-curly-newline */
 const connection = require('../config/connection');
 
 const formateQueryData = (data, totalResults, limit, endIndex, page) => {
   const formattedData = {};
+  formattedData.totalResults = totalResults;
   formattedData.totalPages = Math.ceil(totalResults / limit);
+  formattedData.dataStart = endIndex - limit + 1;
+  formattedData.dataEnd = endIndex;
 
   if (endIndex < totalResults) {
     formattedData.next = {
@@ -18,7 +22,17 @@ const formateQueryData = (data, totalResults, limit, endIndex, page) => {
     };
   }
 
-  formattedData.results = data;
+  const results = [];
+  data.forEach(({ fullname, parkcode, states, designation }) => {
+    results.push({
+      fullname,
+      parkcode,
+      states,
+      designation,
+    });
+  });
+
+  formattedData.results = results;
   return formattedData;
 };
 
