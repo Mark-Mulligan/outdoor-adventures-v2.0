@@ -5,6 +5,14 @@
   border-radius: 5px;
 }
 
+.page-btn:hover {
+  cursor: pointer;
+}
+
+.not-active:hover {
+  background: lightgray;
+}
+
 .active-page {
   background: blue;
   color: white;
