@@ -75,7 +75,7 @@ const PaginatedTable = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container-fluid parks-table-container">
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
@@ -100,15 +100,15 @@ const PaginatedTable = () => {
               ))}
           </TableBody>
         </Table>
+        <TablePagination
+          entryStart={entryStart}
+          entryEnd={entryEnd}
+          totalResults={totalResults}
+          totalPages={totalPages}
+          currentPage={currentPage}
+          getParksData={getParksData}
+        />
       </TableContainer>
-      <TablePagination
-        entryStart={entryStart}
-        entryEnd={entryEnd}
-        totalResults={totalResults}
-        totalPages={totalPages}
-        currentPage={currentPage}
-        getParksData={getParksData}
-      />
     </div>
   );
 };
