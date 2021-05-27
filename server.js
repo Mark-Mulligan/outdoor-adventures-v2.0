@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 
 const connection = require('./config/connection');
+const routes = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -29,13 +30,12 @@ app.get('/api/parks', (req, res) => {
   const offset = (page - 1) * limit;
   const endIndex = page * limit;
 
-  console.log(typeof limit, page, offset);
-
   const queryString = `SELECT *, count(*) OVER() AS results from parks LIMIT ${limit} OFFSET ${offset};`;
   connection.query(queryString, (error, result) => {
     if (error) throw error;
 
     const data = {};
+    data.totalPages = Math.ceil(result[0].results / limit);
 
     if (endIndex < result[0].results) {
       data.next = {
@@ -52,9 +52,7 @@ app.get('/api/parks', (req, res) => {
     }
 
     data.results = result;
-
-    console.log(result);
-    res.json(data);
+    res.status(200).json(data);
   });
 });
 
@@ -62,6 +60,8 @@ app.get('/api/parks', (req, res) => {
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
+
+app.use(routes);
 
 // Start the API server now
 app.listen(PORT, () => {
