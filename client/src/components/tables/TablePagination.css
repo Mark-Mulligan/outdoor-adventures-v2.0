@@ -1,0 +1,11 @@
+.page-btn {
+  width: 30px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.active-page {
+  background: blue;
+  color: white;
+}
