@@ -29,25 +29,38 @@ const designationQuery = (designation) => {
   parkDes.forEach((park, index) => {
     sqlString += index === parkDes.length - 1 ? `'${park}'` : `'${park}',`;
   });
-  return `WHERE designation IN (${sqlString}) `;
+  return ` designation IN (${sqlString})`;
+};
+
+const statesQuery = (states) => {
+  const statesArr = states.split(',');
+  let sqlString = '';
+  statesArr.forEach((state, index) => {
+    sqlString += index === 0 ? ` states LIKE '%${state}%'` : ` OR states LIKE '%${state}%'`;
+  });
+  return sqlString;
 };
 
 exports.getParks = async (req, res) => {
   const limit = parseInt(req.query.limit, 10);
   const page = parseInt(req.query.page, 10);
+  const { designation, states } = req.query;
 
-  const { designation } = req.query;
+  let queryString = 'SELECT *, count(*) OVER() as totalResults from parks';
 
-  let queryString = 'SELECT *, count(*) OVER() as totalResults from parks ';
-
-  if (designation) {
-    queryString += designationQuery(designation);
+  if (designation && states) {
+    queryString += ` WHERE${statesQuery(states)} AND${designationQuery(designation)}`;
+  } else if (states) {
+    queryString += ` WHERE${statesQuery(states)}`;
+  } else if (designation) {
+    queryString += ` WHERE${designationQuery(designation)}`;
   }
 
   const offset = (page - 1) * limit;
   const endIndex = page * limit;
 
-  queryString += `LIMIT ${limit} OFFSET ${offset};`;
+  queryString += ` LIMIT ${limit} OFFSET ${offset};`;
+  console.log(queryString);
 
   try {
     const [result] = await connection.promise().query(queryString);
