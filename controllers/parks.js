@@ -9,20 +9,6 @@ const formateQueryData = (data, totalResults, limit, endIndex, page) => {
   formattedData.dataEnd = endIndex;
   formattedData.currentPage = page;
 
-  if (endIndex < totalResults) {
-    formattedData.next = {
-      page: page + 1,
-      limit,
-    };
-  }
-
-  if (page - 1 > 0) {
-    formattedData.previous = {
-      page: page - 1,
-      limit,
-    };
-  }
-
   const results = [];
   data.forEach(({ fullname, parkcode, states, designation }) => {
     results.push({
@@ -37,14 +23,31 @@ const formateQueryData = (data, totalResults, limit, endIndex, page) => {
   return formattedData;
 };
 
+const designationQuery = (designation) => {
+  const parkDes = designation.split(',');
+  let sqlString = '';
+  parkDes.forEach((park, index) => {
+    sqlString += index === parkDes.length - 1 ? `'${park}'` : `'${park}',`;
+  });
+  return `WHERE designation IN (${sqlString}) `;
+};
+
 exports.getParks = async (req, res) => {
   const limit = parseInt(req.query.limit, 10);
   const page = parseInt(req.query.page, 10);
 
+  const { designation } = req.query;
+
+  let queryString = 'SELECT *, count(*) OVER() as totalResults from parks ';
+
+  if (designation) {
+    queryString += designationQuery(designation);
+  }
+
   const offset = (page - 1) * limit;
   const endIndex = page * limit;
 
-  const queryString = `SELECT *, count(*) OVER() AS totalResults from parks LIMIT ${limit} OFFSET ${offset};`;
+  queryString += `LIMIT ${limit} OFFSET ${offset};`;
 
   try {
     const [result] = await connection.promise().query(queryString);
