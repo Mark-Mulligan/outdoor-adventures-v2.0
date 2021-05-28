@@ -26,7 +26,9 @@ const TablePagination = ({ entryStart, entryEnd, totalResults, totalPages, curre
       <div className="page-btns-container">
         {Array.from(Array(totalPages)).map((x, index) =>
           index + 1 === currentPage ? (
-            <button className="page-btn active-page">{index + 1}</button>
+            <button className="page-btn active-page" key={index}>
+              {index + 1}
+            </button>
           ) : (
             <button onClick={() => getParksData(index + 1, 10)} className="page-btn not-active" key={index}>
               {index + 1}

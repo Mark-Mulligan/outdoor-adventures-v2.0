@@ -7,7 +7,7 @@ import ParksPage from './pages/ParksPage';
 
 function App() {
   return (
-    <Typography>
+    <Typography component="div" className="app">
       <BrowserRouter>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/parks" component={ParksPage} />
