@@ -1,6 +1,6 @@
 import { Multiselect } from 'multiselect-react-dropdown';
 
-const SearchFilters = ({ options, handleChange }) => {
+const SearchFilters = ({ id, options, handleChange }) => {
   const handleSelect = (selectedList) => {
     handleChange(selectedList);
   };
@@ -11,6 +11,7 @@ const SearchFilters = ({ options, handleChange }) => {
 
   return (
     <Multiselect
+      id={id}
       options={options} // Options to display in the dropdown
       isObject={false} // Property name to display in the dropdown options
       onSelect={handleSelect}

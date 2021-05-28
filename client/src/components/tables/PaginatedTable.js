@@ -13,6 +13,8 @@ import DesignationSelect from '../inputs/DesignationSelect';
 import SearchFilters from '../inputs/SearchFilters';
 import TablePagination from './TablePagination';
 
+import './PaginatedTable.css';
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -98,12 +100,23 @@ const PaginatedTable = () => {
     <div className="container-fluid parks-table-container">
       <div className="row">
         <div className="col mb-4">
-          <SearchFilters options={designationList} handleChange={setDesignations} />
+          <label htmlFor="parkname-input">Park Name</label>
+          <input
+            type="email"
+            class="form-control parkname-input"
+            id="parkname-input"
+            aria-describedby="parkname"
+            placeholder="Search by park name"
+          />
         </div>
         <div className="col">
-          <SearchFilters options={stateList} handleChange={setStates} />
+          <label htmlFor="states-select">States Filter</label>
+          <SearchFilters id="states-select" options={stateList} handleChange={setStates} />
         </div>
-        <div className="col"></div>
+        <div className="col">
+          <label htmlFor="designation-select">Designation Filters</label>
+          <SearchFilters id="designation-select" options={designationList} handleChange={setDesignations} />
+        </div>
       </div>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="customized table">
