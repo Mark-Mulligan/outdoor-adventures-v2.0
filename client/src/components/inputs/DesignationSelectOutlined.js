@@ -1,9 +1,12 @@
+import { useState, useEffect, useRef } from 'react';
+
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Chip from '@material-ui/core/Chip';
 import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -42,10 +45,19 @@ const MenuProps = {
 
 const DesignationSelect = ({ value, handleChange, handleChipDelete }) => {
   const classes = useStyles();
+  const inputEl = useRef(null);
+
+  const [labelWidth, setLabelWidth] = useState(0);
+
+  useEffect(() => {
+    const width = inputEl.current ? inputEl.current.offsetWidth : 0;
+    setLabelWidth(width);
+    console.log(labelWidth);
+  }, [inputEl.current]);
 
   return (
-    <FormControl fullWidth size="small">
-      <InputLabel id="designation-select-label" htmlFor="designation-label" l>
+    <FormControl fullWidth variant="outlined" size="small">
+      <InputLabel id="designation-select-label" ref={inputEl} htmlFor="designation-label" l>
         Park Designations
       </InputLabel>
       <Select
@@ -54,7 +66,7 @@ const DesignationSelect = ({ value, handleChange, handleChipDelete }) => {
         multiple
         value={value}
         onChange={handleChange}
-        input={<Input id="designation-label" name="designation-label" />}
+        input={<OutlinedInput id="designation-label" labelWidth={labelWidth} name="designation-label" />}
         renderValue={(selected) => (
           <div className={classes.chips}>
             {selected.map((value) => (

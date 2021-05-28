@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 import DesignationSelect from '../inputs/DesignationSelect';
+import SearchFilters from '../inputs/SearchFilters';
 import TablePagination from './TablePagination';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -41,10 +42,25 @@ const useStyles = makeStyles({
   },
 });
 
+const stateList = ['Texas', 'Florida', 'New Mexico', 'Oklahoma', 'Utah', 'Nevada'];
+const designationList = [
+  'national park',
+  'national historical park',
+  'national monument',
+  'national historic trail',
+  'national historic area',
+  'national historic site',
+  'national battefield',
+  'park',
+  'national memorial',
+  'national seashore',
+];
+
 const PaginatedTable = () => {
   const classes = useStyles();
 
   const [designations, setDesignations] = useState([]);
+  const [states, setStates] = useState([]);
 
   const [parkData, setParkData] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
@@ -56,20 +72,6 @@ const PaginatedTable = () => {
   useEffect(() => {
     getParksData(1, 10);
   }, []);
-
-  const handleDesChange = (event) => {
-    setDesignations(event.target.value);
-  };
-
-  const handleDesDelete = (value) => {
-    let desArr = designations;
-    let newArr = [];
-    desArr.forEach((des) => {
-      if (des !== value) newArr.push(des);
-    });
-
-    setDesignations(newArr);
-  };
 
   const setTableData = (data) => {
     setParkData(data.results);
@@ -95,10 +97,12 @@ const PaginatedTable = () => {
   return (
     <div className="container-fluid parks-table-container">
       <div className="row">
-        <div className="col">
-          <DesignationSelect value={designations} handleChange={handleDesChange} handleChipDelete={handleDesDelete} />
+        <div className="col mb-4">
+          <SearchFilters options={designationList} handleChange={setDesignations} />
         </div>
-        <div className="col"></div>
+        <div className="col">
+          <SearchFilters options={stateList} handleChange={setStates} />
+        </div>
         <div className="col"></div>
       </div>
       <TableContainer component={Paper}>
