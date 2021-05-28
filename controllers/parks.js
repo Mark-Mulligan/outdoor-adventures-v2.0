@@ -1,7 +1,7 @@
 /* eslint-disable object-curly-newline */
 const connection = require('../config/connection');
 
-const formateQueryData = (data, totalResults, limit, endIndex, page) => {
+const formatQueryData = (data, totalResults, limit, endIndex, page) => {
   const formattedData = {};
   formattedData.totalResults = totalResults;
   formattedData.totalPages = Math.ceil(totalResults / limit);
@@ -38,33 +38,47 @@ const statesQuery = (states) => {
   statesArr.forEach((state, index) => {
     sqlString += index === 0 ? ` states LIKE '%${state}%'` : ` OR states LIKE '%${state}%'`;
   });
+  return `(${sqlString})`;
+};
+
+const nameQuery = (name) => ` fullname LIKE '%${name}%'`;
+
+const constructSQLQuery = (designation, states, q) => {
+  let sqlString = '';
+  if (designation && states && q) {
+    sqlString += ` WHERE${nameQuery(q)} AND${statesQuery(states)} AND${designationQuery(designation)}`;
+  } else if (q && designation) {
+    sqlString += ` WHERE${nameQuery(q)} AND${designationQuery(designation)}`;
+  } else if (q && states) {
+    sqlString += ` WHERE${nameQuery(q)} AND${statesQuery(states)}`;
+  } else if (designation && states) {
+    sqlString += ` WHERE${statesQuery(states)} AND${designationQuery(designation)}`;
+  } else {
+    if (q) sqlString += ` WHERE${nameQuery(q)}`;
+    if (designation) sqlString += ` WHERE${designationQuery(designation)}`;
+    if (states) sqlString += ` WHERE${statesQuery(states)}`;
+  }
   return sqlString;
 };
 
 exports.getParks = async (req, res) => {
   const limit = parseInt(req.query.limit, 10);
   const page = parseInt(req.query.page, 10);
-  const { designation, states } = req.query;
+  const { designation, states, q } = req.query;
 
   let queryString = 'SELECT *, count(*) OVER() as totalResults from parks';
 
-  if (designation && states) {
-    queryString += ` WHERE${statesQuery(states)} AND${designationQuery(designation)}`;
-  } else if (states) {
-    queryString += ` WHERE${statesQuery(states)}`;
-  } else if (designation) {
-    queryString += ` WHERE${designationQuery(designation)}`;
-  }
+  queryString += constructSQLQuery(designation, states, q);
 
   const offset = (page - 1) * limit;
   const endIndex = page * limit;
 
   queryString += ` LIMIT ${limit} OFFSET ${offset};`;
-  console.log(queryString);
 
   try {
     const [result] = await connection.promise().query(queryString);
-    const data = formateQueryData(result, result[0].totalResults, limit, endIndex, page);
+    const totalResults = result.length > 0 ? result[0].totalResults : 0;
+    const data = formatQueryData(result, totalResults, limit, endIndex, page);
     res.status(200).json(data);
   } catch (e) {
     console.log(e);
