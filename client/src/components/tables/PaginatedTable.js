@@ -9,7 +9,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import DesignationSelect from '../inputs/DesignationSelect';
 import SearchFilters from '../inputs/SearchFilters';
 import TablePagination from './TablePagination';
 
@@ -44,7 +43,14 @@ const useStyles = makeStyles({
   },
 });
 
-const stateList = ['Texas', 'Florida', 'New Mexico', 'Oklahoma', 'Utah', 'Nevada'];
+const stateList = [
+  { name: 'Texas', id: 'tx' },
+  { name: 'Florida', id: 'fl' },
+  { name: 'New Mexico', id: 'nm' },
+  { name: 'Oklahoma', id: 'ok' },
+  { name: 'Utah', id: 'ut' },
+  { name: 'Nevada', id: 'nv' },
+];
 const designationList = [
   'national park',
   'national historical park',
@@ -72,7 +78,7 @@ const PaginatedTable = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    getParksData(1, 10);
+    getParksData(1, 10, states);
   }, []);
 
   const setTableData = (data) => {
@@ -84,7 +90,14 @@ const PaginatedTable = () => {
     setCurrentPage(data.currentPage);
   };
 
-  const getParksData = async (page, limit) => {
+  const getParksData = async (page, limit, states) => {
+    let apiRequestStr = `/api/parks/test?page=${page}&limit=${limit}`;
+
+    if (states.length > 0) {
+      apiRequestStr += '&states=';
+      console.log(states.join(','));
+    }
+    console.log('states', states);
     try {
       const { data, status } = await axios.get(`/api/parks/test?page=${page}&limit=${limit}`);
       if (status === 200) {
@@ -96,6 +109,11 @@ const PaginatedTable = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(states);
+    console.log(designations);
+  }, [states, designations]);
+
   return (
     <div className="container-fluid parks-table-container">
       <div className="row">
@@ -103,7 +121,7 @@ const PaginatedTable = () => {
           <label htmlFor="parkname-input">Park Name</label>
           <input
             type="email"
-            class="form-control parkname-input"
+            className="form-control parkname-input"
             id="parkname-input"
             aria-describedby="parkname"
             placeholder="Search by park name"
@@ -115,7 +133,12 @@ const PaginatedTable = () => {
         </div>
         <div className="col">
           <label htmlFor="designation-select">Designation Filters</label>
-          <SearchFilters id="designation-select" options={designationList} handleChange={setDesignations} />
+          <SearchFilters
+            id="designation-select"
+            options={designationList}
+            isObject={false}
+            handleChange={setDesignations}
+          />
         </div>
       </div>
       <TableContainer component={Paper}>
@@ -148,6 +171,7 @@ const PaginatedTable = () => {
           totalResults={totalResults}
           totalPages={totalPages}
           currentPage={currentPage}
+          states={states}
           getParksData={getParksData}
         />
       </TableContainer>

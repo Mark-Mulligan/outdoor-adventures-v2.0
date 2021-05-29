@@ -3,20 +3,20 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-const TablePagination = ({ entryStart, entryEnd, totalResults, totalPages, currentPage, getParksData }) => {
+const TablePagination = ({ entryStart, entryEnd, totalResults, totalPages, currentPage, getParksData, states }) => {
   return (
     <div className="pagination-section">
       <div className="pagination-info-container">
         Showing {entryStart} to {entryEnd} of {totalResults} results
         <IconButton
-          onClick={() => getParksData(currentPage - 1, 10)}
+          onClick={() => getParksData(currentPage - 1, 10, states)}
           aria-label="previous-page"
           disabled={currentPage === 1 ? true : false}
         >
           <ChevronLeftIcon />
         </IconButton>
         <IconButton
-          onClick={() => getParksData(currentPage + 1, 10)}
+          onClick={() => getParksData(currentPage + 1, 10, states)}
           aria-label="next-page"
           disabled={currentPage === totalPages ? true : false}
         >
@@ -30,7 +30,7 @@ const TablePagination = ({ entryStart, entryEnd, totalResults, totalPages, curre
               {index + 1}
             </button>
           ) : (
-            <button onClick={() => getParksData(index + 1, 10)} className="page-btn not-active" key={index}>
+            <button onClick={() => getParksData(index + 1, 10, states)} className="page-btn not-active" key={index}>
               {index + 1}
             </button>
           ),
