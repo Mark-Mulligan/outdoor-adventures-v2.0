@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -69,6 +69,8 @@ const PaginatedTable = () => {
 
   const [designations, setDesignations] = useState([]);
   const [states, setStates] = useState([]);
+  const [parkName, setParkName] = useState('');
+  const [debouncedParkName, setDebouncedParkName] = useState('');
 
   const [parkData, setParkData] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
@@ -76,6 +78,33 @@ const PaginatedTable = () => {
   const [entryStart, setEntryStart] = useState(0);
   const [entryEnd, setEntryEnd] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+
+  const debounceFunction = (func, delay) => {
+    let timer;
+    return function () {
+      let self = this;
+      let args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(self, args);
+      }, delay);
+    };
+  };
+
+  const changeParkName = useCallback(
+    debounceFunction((value) => setDebouncedParkName(value), 1000),
+    [],
+  );
+
+  const onInputChange = (e) => {
+    const nextValue = e.target.value;
+    setParkName(nextValue);
+    changeParkName(nextValue);
+  };
+
+  useEffect(() => {
+    console.log(debouncedParkName);
+  }, [debouncedParkName]);
 
   useEffect(() => {
     getParksData(1, 10, states, designations);
@@ -117,7 +146,9 @@ const PaginatedTable = () => {
         <div className="col mb-4">
           <label htmlFor="parkname-input">Park Name</label>
           <input
-            type="email"
+            value={parkName}
+            onChange={onInputChange}
+            type="text"
             className="form-control parkname-input"
             id="parkname-input"
             aria-describedby="parkname"
