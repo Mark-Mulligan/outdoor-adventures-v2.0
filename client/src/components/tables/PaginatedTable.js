@@ -78,8 +78,8 @@ const PaginatedTable = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    getParksData(1, 10, states);
-  }, [states]);
+    getParksData(1, 10, states, designations);
+  }, [states, designations]);
 
   const setTableData = (data) => {
     setParkData(data.results);
@@ -90,11 +90,15 @@ const PaginatedTable = () => {
     setCurrentPage(data.currentPage);
   };
 
-  const getParksData = async (page, limit, states) => {
+  const getParksData = async (page, limit, states, designations) => {
     let apiRequestStr = `/api/parks/test?page=${page}&limit=${limit}`;
 
     if (states.length > 0) {
       apiRequestStr += `&states=${states.join(',')}`;
+    }
+
+    if (designations.length > 0) {
+      apiRequestStr += `&designation=${designations.join(',')}`;
     }
 
     try {
@@ -165,6 +169,7 @@ const PaginatedTable = () => {
           totalPages={totalPages}
           currentPage={currentPage}
           states={states}
+          designations={designations}
           getParksData={getParksData}
         />
       </TableContainer>

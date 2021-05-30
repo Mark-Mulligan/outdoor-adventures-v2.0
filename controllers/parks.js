@@ -6,7 +6,7 @@ const formatQueryData = (data, totalResults, limit, endIndex, page) => {
   formattedData.totalResults = totalResults;
   formattedData.totalPages = Math.ceil(totalResults / limit);
   formattedData.dataStart = endIndex - limit + 1;
-  formattedData.dataEnd = endIndex;
+  formattedData.dataEnd = totalResults > endIndex ? endIndex : totalResults;
   formattedData.currentPage = page;
 
   const results = [];

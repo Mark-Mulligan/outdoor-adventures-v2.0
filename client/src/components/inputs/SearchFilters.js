@@ -2,29 +2,23 @@ import { Multiselect } from 'multiselect-react-dropdown';
 
 const SearchFilters = ({ id, options, isObject, handleChange }) => {
   const handleSelect = (selectedList, selectedItem) => {
-    if (selectedItem.id) {
-      let resultArr = [];
-      selectedList.forEach((item) => {
-        resultArr.push(item.id);
-      });
-      handleChange(resultArr);
-      return;
-    }
-
-    handleChange(selectedList);
+    let resultArr = [];
+    selectedList.forEach((item) => {
+      resultArr.push(item.id ? item.id : item);
+    });
+    handleChange(resultArr);
   };
 
   const handleDelete = (selectedList) => {
-    if (selectedList.length > 0 && selectedList[0].id) {
-      let resultArr = [];
+    const resultArr = [];
+    if (selectedList.length > 0) {
       selectedList.forEach((item) => {
-        resultArr.push(item.id);
+        resultArr.push(item.id ? item.id : item);
       });
       handleChange(resultArr);
       return;
     }
-
-    handleChange(selectedList);
+    handleChange(resultArr);
   };
 
   return (
