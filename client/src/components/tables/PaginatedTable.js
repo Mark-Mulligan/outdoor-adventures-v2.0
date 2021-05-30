@@ -79,7 +79,7 @@ const PaginatedTable = () => {
 
   useEffect(() => {
     getParksData(1, 10, states);
-  }, []);
+  }, [states]);
 
   const setTableData = (data) => {
     setParkData(data.results);
@@ -94,25 +94,18 @@ const PaginatedTable = () => {
     let apiRequestStr = `/api/parks/test?page=${page}&limit=${limit}`;
 
     if (states.length > 0) {
-      apiRequestStr += '&states=';
-      console.log(states.join(','));
+      apiRequestStr += `&states=${states.join(',')}`;
     }
-    console.log('states', states);
+
     try {
-      const { data, status } = await axios.get(`/api/parks/test?page=${page}&limit=${limit}`);
+      const { data, status } = await axios.get(apiRequestStr);
       if (status === 200) {
-        console.log(data);
         setTableData(data);
       }
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    console.log(states);
-    console.log(designations);
-  }, [states, designations]);
 
   return (
     <div className="container-fluid parks-table-container">
