@@ -12,20 +12,21 @@ const TablePagination = ({
   getParksData,
   states,
   designations,
+  parkName,
 }) => {
   return (
     <div className="pagination-section">
       <div className="pagination-info-container">
         Showing {entryStart} to {entryEnd} of {totalResults} results
         <IconButton
-          onClick={() => getParksData(currentPage - 1, 10, states, designations)}
+          onClick={() => getParksData(currentPage - 1, 10, states, designations, parkName)}
           aria-label="previous-page"
           disabled={currentPage === 1 ? true : false}
         >
           <ChevronLeftIcon />
         </IconButton>
         <IconButton
-          onClick={() => getParksData(currentPage + 1, 10, states, designations)}
+          onClick={() => getParksData(currentPage + 1, 10, states, designations, parkName)}
           aria-label="next-page"
           disabled={currentPage === totalPages ? true : false}
         >
@@ -40,7 +41,7 @@ const TablePagination = ({
             </button>
           ) : (
             <button
-              onClick={() => getParksData(index + 1, 10, states, designations)}
+              onClick={() => getParksData(index + 1, 10, states, designations, parkName)}
               className="page-btn not-active"
               key={index}
             >
