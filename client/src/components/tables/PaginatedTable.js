@@ -92,10 +92,30 @@ const PaginatedTable = () => {
   const [entryEnd, setEntryEnd] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
 
-  /* const changeParkName = useCallback(
-    debounceFunction((value) => setDebouncedParkName(value), 1000),
-    [],
-  ); */
+  const getParksData = useCallback(async (page, limit, states, designation, parkName) => {
+    let apiRequestStr = `/api/parks/test?page=${page}&limit=${limit}`;
+
+    if (states.length > 0) {
+      apiRequestStr += `&states=${states.join(',')}`;
+    }
+
+    if (designation.length > 0) {
+      apiRequestStr += `&designation=${designation.join(',')}`;
+    }
+
+    if (parkName) {
+      apiRequestStr += `&q=${parkName}`;
+    }
+
+    try {
+      const { data, status } = await axios.get(apiRequestStr);
+      if (status === 200) {
+        setTableData(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const debouncedSearch = useMemo(
     () =>
@@ -113,15 +133,9 @@ const PaginatedTable = () => {
     [debouncedSearch],
   );
 
-  /* const onInputChange = (e) => {
-    const nextValue = e.target.value;
-    setParkName(nextValue);
-    changeParkName(nextValue);
-  }; */
-
   useEffect(() => {
     getParksData(1, 10, states, designations, debouncedParkName);
-  }, [states, designations, debouncedParkName]);
+  }, [states, designations, debouncedParkName, getParksData]);
 
   const setTableData = (data) => {
     setParkData(data.results);
@@ -130,31 +144,6 @@ const PaginatedTable = () => {
     setEntryEnd(data.dataEnd);
     setTotalPages(data.totalPages);
     setCurrentPage(data.currentPage);
-  };
-
-  const getParksData = async (page, limit, states, designations, parkName) => {
-    let apiRequestStr = `/api/parks/test?page=${page}&limit=${limit}`;
-
-    if (states.length > 0) {
-      apiRequestStr += `&states=${states.join(',')}`;
-    }
-
-    if (designations.length > 0) {
-      apiRequestStr += `&designation=${designations.join(',')}`;
-    }
-
-    if (parkName) {
-      apiRequestStr += `&q=${parkName}`;
-    }
-
-    try {
-      const { data, status } = await axios.get(apiRequestStr);
-      if (status === 200) {
-        setTableData(data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
