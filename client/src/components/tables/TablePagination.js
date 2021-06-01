@@ -23,10 +23,10 @@ const TablePagination = ({
   return (
     <div className="pagination-section container-fluid">
       <div className="row">
-        <div className="col d-flex align-items-center">
+        <div className="col-lg-4 col-12 d-flex align-items-center">
           Showing {entryStart} to {entryEnd} of {totalResults} results
         </div>
-        <div className="results-per-page col d-flex align-items-center justify-content-center">
+        <div className="results-per-page col-lg-4 col-12 d-flex align-items-center justify-content-center">
           <p>Results Per Page:</p>
 
           <FormControl className="paginated-select">
@@ -42,7 +42,7 @@ const TablePagination = ({
             </Select>
           </FormControl>
         </div>
-        <div className="page-btns-container col d-flex align-items-center justify-content-end">
+        <div className="page-btns-container col-lg-4 col-12 d-flex align-items-center justify-content-end">
           <PageSelect totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>
       </div>
