@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -64,6 +64,19 @@ const designationList = [
   'national seashore',
 ];
 
+const debounceFunction = (func, delay) => {
+  let timer;
+  return function () {
+    let self = this;
+    let args = arguments;
+    console.log(arguments);
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(self, args);
+    }, delay);
+  };
+};
+
 const PaginatedTable = () => {
   const classes = useStyles();
 
@@ -79,28 +92,32 @@ const PaginatedTable = () => {
   const [entryEnd, setEntryEnd] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const debounceFunction = (func, delay) => {
-    let timer;
-    return function () {
-      let self = this;
-      let args = arguments;
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(self, args);
-      }, delay);
-    };
-  };
-
-  const changeParkName = useCallback(
+  /* const changeParkName = useCallback(
     debounceFunction((value) => setDebouncedParkName(value), 1000),
     [],
+  ); */
+
+  const debouncedSearch = useMemo(
+    () =>
+      debounceFunction((val) => {
+        setDebouncedParkName(val);
+      }, 750),
+    [setDebouncedParkName],
   );
 
-  const onInputChange = (e) => {
+  const onInputChange = useCallback(
+    (e) => {
+      setParkName(e.target.value);
+      debouncedSearch(e.target.value);
+    },
+    [debouncedSearch],
+  );
+
+  /* const onInputChange = (e) => {
     const nextValue = e.target.value;
     setParkName(nextValue);
     changeParkName(nextValue);
-  };
+  }; */
 
   useEffect(() => {
     getParksData(1, 10, states, designations, debouncedParkName);
