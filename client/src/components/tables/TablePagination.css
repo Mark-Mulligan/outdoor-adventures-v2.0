@@ -48,3 +48,18 @@
   background: lightblue;
   color: white;
 }
+
+.results-per-page {
+  display: flex;
+  align-items: center;
+}
+
+.paginated-select {
+  padding: 3px !important;
+}
+
+.results-per-page p {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 5px;
+}

@@ -91,6 +91,7 @@ const PaginatedTable = () => {
   const [entryStart, setEntryStart] = useState(0);
   const [entryEnd, setEntryEnd] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+  const [resultLimit, setResultLimit] = useState(10);
 
   const getParksData = useCallback(async (page, limit, states, designation, parkName) => {
     let apiRequestStr = `/api/parks/test?page=${page}&limit=${limit}`;
@@ -117,6 +118,19 @@ const PaginatedTable = () => {
     }
   }, []);
 
+  const setTableData = (data) => {
+    setParkData(data.results);
+    setTotalResults(data.totalResults);
+    setEntryStart(data.dataStart);
+    setEntryEnd(data.dataEnd);
+    setTotalPages(data.totalPages);
+    setCurrentPage(data.currentPage);
+  };
+
+  useEffect(() => {
+    getParksData(1, 10, states, designations, debouncedParkName);
+  }, [states, designations, debouncedParkName, getParksData]);
+
   const debouncedSearch = useMemo(
     () =>
       debounceFunction((val) => {
@@ -132,19 +146,6 @@ const PaginatedTable = () => {
     },
     [debouncedSearch],
   );
-
-  useEffect(() => {
-    getParksData(1, 10, states, designations, debouncedParkName);
-  }, [states, designations, debouncedParkName, getParksData]);
-
-  const setTableData = (data) => {
-    setParkData(data.results);
-    setTotalResults(data.totalResults);
-    setEntryStart(data.dataStart);
-    setEntryEnd(data.dataEnd);
-    setTotalPages(data.totalPages);
-    setCurrentPage(data.currentPage);
-  };
 
   return (
     <div className="container-fluid parks-table-container">
@@ -209,6 +210,8 @@ const PaginatedTable = () => {
           parkName={parkName}
           designations={designations}
           getParksData={getParksData}
+          resultLimit={resultLimit}
+          setResultLimit={setResultLimit}
         />
       </TableContainer>
     </div>
