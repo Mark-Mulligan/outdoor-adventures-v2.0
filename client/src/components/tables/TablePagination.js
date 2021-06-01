@@ -58,7 +58,32 @@ const TablePagination = ({
         </div>
       </div>
       <div className="page-btns-container">
-        {Array.from(Array(totalPages)).map((x, index) =>
+        {totalPages > 7 &&
+          Array.from(
+            Array(7).map((x, index) =>
+              index + 1 === currentPage ? (
+                <button className="page-btn active-page" key={index}>
+                  {index + 1}
+                </button>
+              ) : (
+                <button
+                  onClick={() => getParksData(index + 1, resultLimit, states, designations, parkName)}
+                  className="page-btn not-active"
+                  key={index}
+                >
+                  {index + 1}
+                </button>
+              ),
+            ),
+          )}
+      </div>
+    </div>
+  );
+};
+
+export default TablePagination;
+
+/*  {Array.from(Array(totalPages)).map((x, index) =>
           index + 1 === currentPage ? (
             <button className="page-btn active-page" key={index}>
               {index + 1}
@@ -72,10 +97,4 @@ const TablePagination = ({
               {index + 1}
             </button>
           ),
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default TablePagination;
+        )} */
