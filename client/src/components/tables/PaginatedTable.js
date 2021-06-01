@@ -128,8 +128,8 @@ const PaginatedTable = () => {
   };
 
   useEffect(() => {
-    getParksData(1, 10, states, designations, debouncedParkName);
-  }, [states, designations, debouncedParkName, getParksData]);
+    getParksData(1, resultLimit, states, designations, debouncedParkName);
+  }, [states, designations, debouncedParkName, getParksData, resultLimit]);
 
   const debouncedSearch = useMemo(
     () =>
