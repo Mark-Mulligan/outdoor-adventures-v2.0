@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const PageSelect = ({ totalPages, currentPage }) => {
+const PageSelect = ({ totalPages, currentPage, setCurrentPage }) => {
   const [pageBtnValues, setPageBtnValues] = useState([]);
 
   const getPageBtnValues = useCallback(() => {
@@ -23,7 +23,49 @@ const PageSelect = ({ totalPages, currentPage }) => {
     getPageBtnValues();
   }, [totalPages, currentPage, getPageBtnValues]);
 
-  return {};
+  return (
+    <ul className="pagination">
+      <li className={`page-item ${currentPage === 1 && 'disabled'}`}>
+        <button className="page-link" aria-label="Previous" onClick={() => setCurrentPage(currentPage - 1)}>
+          <span> &#60; </span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+      </li>
+      {pageBtnValues.map((value, index) => {
+        if (value === currentPage) {
+          return (
+            <li className="page-item active">
+              <button className="page-link" key={index}>
+                {value}
+              </button>
+            </li>
+          );
+        } else if (value === '...') {
+          return (
+            <li className="page-item disabled">
+              <button className="page-link" key={index}>
+                {value}
+              </button>
+            </li>
+          );
+        } else {
+          return (
+            <li className="page-item">
+              <button onClick={() => setCurrentPage(value)} className="page-link" key={index}>
+                {value}
+              </button>
+            </li>
+          );
+        }
+      })}
+      <li className={`page-item ${currentPage === totalPages && 'disabled'}`}>
+        <button className="page-link" aria-label="next" onClick={() => setCurrentPage(currentPage + 1)}>
+          <span> &#62; </span>
+          <span className="visually-hidden">Next</span>
+        </button>
+      </li>
+    </ul>
+  );
 };
 
 export default PageSelect;

@@ -90,7 +90,7 @@ const PaginatedTable = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [entryStart, setEntryStart] = useState(0);
   const [entryEnd, setEntryEnd] = useState(0);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [resultLimit, setResultLimit] = useState(10);
 
   const getParksData = useCallback(async (page, limit, states, designation, parkName) => {
@@ -128,8 +128,8 @@ const PaginatedTable = () => {
   };
 
   useEffect(() => {
-    getParksData(1, resultLimit, states, designations, debouncedParkName);
-  }, [states, designations, debouncedParkName, getParksData, resultLimit]);
+    getParksData(currentPage, resultLimit, states, designations, debouncedParkName);
+  }, [states, designations, debouncedParkName, getParksData, resultLimit, currentPage]);
 
   const debouncedSearch = useMemo(
     () =>
@@ -206,10 +206,7 @@ const PaginatedTable = () => {
           totalResults={totalResults}
           totalPages={totalPages}
           currentPage={currentPage}
-          states={states}
-          parkName={parkName}
-          designations={designations}
-          getParksData={getParksData}
+          setCurrentPage={setCurrentPage}
           resultLimit={resultLimit}
           setResultLimit={setResultLimit}
         />

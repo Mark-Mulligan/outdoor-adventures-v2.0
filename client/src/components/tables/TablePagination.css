@@ -1,61 +1,10 @@
-.pagination-section {
-  padding: 16px;
-  display: grid;
-  grid-template-columns: auto auto;
-}
-
-@media (max-width: 675px) {
-  .pagination-section {
-    display: block;
-  }
-}
-
-.pagination-info-container {
-  margin-right: 10px;
-}
-
-.page-btns-container {
-  overflow: scroll;
-  white-space: nowrap;
-  border-radius: 5px;
-  border: 1px solid lightgray;
-  padding: 10px;
-}
-
-.page-btn {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  display: inline-block;
-  border-radius: 5px;
-  border: none;
-  background: none;
-}
-
-.page-btn span {
-  margin: auto;
-}
-
-.page-btn:hover {
-  cursor: pointer;
-}
-
-.not-active:hover {
-  background: lightgray;
-}
-
-.active-page {
-  background: lightblue;
-  color: white;
-}
-
-.results-per-page {
-  display: flex;
-  align-items: center;
-}
-
 .paginated-select {
   padding: 3px !important;
+}
+
+.pagination {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .results-per-page p {

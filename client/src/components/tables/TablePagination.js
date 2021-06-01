@@ -1,10 +1,9 @@
 import './TablePagination.css';
-import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+
+import PageSelect from './PageSelect';
 
 const TablePagination = ({
   entryStart,
@@ -12,35 +11,22 @@ const TablePagination = ({
   totalResults,
   totalPages,
   currentPage,
-  getParksData,
-  states,
-  designations,
-  parkName,
+  setCurrentPage,
   resultLimit,
   setResultLimit,
 }) => {
-  return (
-    <div className="pagination-section">
-      <div className="pagination-info-container">
-        <div>
-          Showing {entryStart} to {entryEnd} of {totalResults} results
-          <IconButton
-            onClick={() => getParksData(currentPage - 1, resultLimit, states, designations, parkName)}
-            aria-label="previous-page"
-            disabled={currentPage === 1 ? true : false}
-          >
-            <ChevronLeftIcon />
-          </IconButton>
-          <IconButton
-            onClick={() => getParksData(currentPage + 1, resultLimit, states, designations, parkName)}
-            aria-label="next-page"
-            disabled={currentPage === totalPages ? true : false}
-          >
-            <ChevronRightIcon />
-          </IconButton>
-        </div>
+  const handleResultsPerPage = (e) => {
+    setResultLimit(e.target.value);
+    setCurrentPage(1);
+  };
 
-        <div className="results-per-page">
+  return (
+    <div className="pagination-section container-fluid">
+      <div className="row">
+        <div className="col d-flex align-items-center">
+          Showing {entryStart} to {entryEnd} of {totalResults} results
+        </div>
+        <div className="results-per-page col d-flex align-items-center justify-content-center">
           <p>Results Per Page:</p>
 
           <FormControl className="paginated-select">
@@ -48,7 +34,7 @@ const TablePagination = ({
               labelId="page-limit-select-label"
               id="page-limit-select"
               value={resultLimit}
-              onChange={(e) => setResultLimit(e.target.value)}
+              onChange={handleResultsPerPage}
             >
               <MenuItem value={10}>10</MenuItem>
               <MenuItem value={25}>25</MenuItem>
@@ -56,45 +42,12 @@ const TablePagination = ({
             </Select>
           </FormControl>
         </div>
-      </div>
-      <div className="page-btns-container">
-        {totalPages > 7 &&
-          Array.from(
-            Array(7).map((x, index) =>
-              index + 1 === currentPage ? (
-                <button className="page-btn active-page" key={index}>
-                  {index + 1}
-                </button>
-              ) : (
-                <button
-                  onClick={() => getParksData(index + 1, resultLimit, states, designations, parkName)}
-                  className="page-btn not-active"
-                  key={index}
-                >
-                  {index + 1}
-                </button>
-              ),
-            ),
-          )}
+        <div className="page-btns-container col d-flex align-items-center justify-content-end">
+          <PageSelect totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        </div>
       </div>
     </div>
   );
 };
 
 export default TablePagination;
-
-/*  {Array.from(Array(totalPages)).map((x, index) =>
-          index + 1 === currentPage ? (
-            <button className="page-btn active-page" key={index}>
-              {index + 1}
-            </button>
-          ) : (
-            <button
-              onClick={() => getParksData(index + 1, resultLimit, states, designations, parkName)}
-              className="page-btn not-active"
-              key={index}
-            >
-              {index + 1}
-            </button>
-          ),
-        )} */
