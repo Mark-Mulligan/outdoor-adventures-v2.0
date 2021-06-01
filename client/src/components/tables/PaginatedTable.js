@@ -150,7 +150,7 @@ const PaginatedTable = () => {
   return (
     <div className="container-fluid parks-table-container">
       <div className="row">
-        <div className="col mb-4">
+        <div className="col-md-4 col-12 mb-4">
           <label htmlFor="parkname-input">Park Name</label>
           <input
             value={parkName}
@@ -162,11 +162,11 @@ const PaginatedTable = () => {
             placeholder="Search by park name"
           />
         </div>
-        <div className="col">
+        <div className="col-md-4 col-12 mb-4">
           <label htmlFor="states-select">States Filter</label>
           <SearchFilters id="states-select" options={stateList} handleChange={setStates} />
         </div>
-        <div className="col">
+        <div className="col-md-4 col-12 mb-4">
           <label htmlFor="designation-select">Designation Filters</label>
           <SearchFilters
             id="designation-select"

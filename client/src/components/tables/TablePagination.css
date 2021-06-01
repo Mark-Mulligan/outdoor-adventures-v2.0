@@ -3,12 +3,31 @@
 }
 
 .pagination {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.results-per-page {
+  justify-content: center;
 }
 
 .results-per-page p {
   margin-top: auto;
   margin-bottom: auto;
   margin-right: 5px;
+}
+
+.page-btns-container {
+  justify-content: flex-end !important;
+}
+
+@media (max-width: 991px) {
+  .results-per-page {
+    justify-content: flex-start;
+  }
+
+  .page-btns-container {
+    justify-content: flex-start !important;
+    margin-top: 10px !important;
+  }
 }
