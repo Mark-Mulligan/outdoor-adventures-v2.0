@@ -35,24 +35,20 @@ const PageSelect = ({ totalPages, currentPage, setCurrentPage }) => {
       {pageBtnValues.map((value, index) => {
         if (value === currentPage) {
           return (
-            <li className="page-item active">
-              <button className="page-link" key={index}>
-                {value}
-              </button>
+            <li className="page-item active" key={index}>
+              <button className="page-link">{value}</button>
             </li>
           );
         } else if (value === '...') {
           return (
-            <li className="page-item disabled">
-              <button className="page-link" key={index}>
-                {value}
-              </button>
+            <li className="page-item disabled" key={index}>
+              <button className="page-link">{value}</button>
             </li>
           );
         } else {
           return (
-            <li className="page-item">
-              <button onClick={() => setCurrentPage(value)} className="page-link" key={index}>
+            <li className="page-item" key={index}>
+              <button onClick={() => setCurrentPage(value)} className="page-link">
                 {value}
               </button>
             </li>

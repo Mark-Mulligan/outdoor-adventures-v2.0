@@ -1,4 +1,5 @@
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -71,13 +72,20 @@ const debounceFunction = (func, delay) => {
   return function () {
     let self = this;
     let args = arguments;
-    console.log(arguments);
     clearTimeout(timer);
     timer = setTimeout(() => {
       func.apply(self, args);
     }, delay);
   };
 };
+
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
 
 const PaginatedTable = () => {
   const classes = useStyles();
@@ -95,7 +103,9 @@ const PaginatedTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [resultLimit, setResultLimit] = useState(10);
 
-  const getParksData = useCallback(async (page, limit, states, designation, parkName) => {
+  //const prevDebouncedParkName = usePrevious(debouncedParkName) || '';
+
+  const getParksData = useCallback(async (page, limit, states, designation, parkQuery) => {
     let apiRequestStr = `/api/parks/test?page=${page}&limit=${limit}`;
 
     if (states.length > 0) {
@@ -106,8 +116,8 @@ const PaginatedTable = () => {
       apiRequestStr += `&designation=${designation.join(',')}`;
     }
 
-    if (parkName) {
-      apiRequestStr += `&q=${parkName}`;
+    if (parkQuery) {
+      apiRequestStr += `&q=${parkQuery}`;
     }
 
     try {
@@ -126,7 +136,7 @@ const PaginatedTable = () => {
     setEntryStart(data.dataStart);
     setEntryEnd(data.dataEnd);
     setTotalPages(data.totalPages);
-    setCurrentPage(data.currentPage);
+    //setCurrentPage(data.currentPage);
   };
 
   useEffect(() => {
@@ -136,9 +146,14 @@ const PaginatedTable = () => {
   const debouncedSearch = useMemo(
     () =>
       debounceFunction((val) => {
-        setDebouncedParkName(val);
+        Promise.resolve().then((res) => {
+          ReactDOM.unstable_batchedUpdates(() => {
+            setCurrentPage(1);
+            setDebouncedParkName(val);
+          });
+        });
       }, 750),
-    [setDebouncedParkName],
+    [setDebouncedParkName, setCurrentPage],
   );
 
   const onInputChange = useCallback(
