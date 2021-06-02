@@ -21,7 +21,11 @@ const TablePagination = ({
   };
 
   return (
-    <div className="pagination-section container-fluid">
+    <div
+      className={`pagination-section container-fluid ${
+        (entryEnd - entryStart) % 2 === 0 ? 'white-background' : 'light-grey-background'
+      }`}
+    >
       <div className="row pt-2 pb-2">
         <div className="col-lg-4 col-sm-6 col-12 d-flex align-items-center">
           Showing {entryStart} to {entryEnd} of {totalResults} results

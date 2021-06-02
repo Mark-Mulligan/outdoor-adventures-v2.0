@@ -1,1 +1,8 @@
-
+.parks-page-background {
+  background-image: url('./images/cliffsAndRoad.jpg');
+  background-size: cover;
+  background-position: center;
+  padding-bottom: 50px;
+  height: 100vh;
+  overflow: scroll;
+}

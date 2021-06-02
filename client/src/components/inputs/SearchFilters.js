@@ -1,6 +1,7 @@
 import { Multiselect } from 'multiselect-react-dropdown';
+import './SearchFilters.css';
 
-const SearchFilters = ({ id, options, isObject, handleChange }) => {
+const SearchFilters = ({ id, options, isObject, handleChange, placeholder }) => {
   const handleSelect = (selectedList, selectedItem) => {
     let resultArr = [];
     selectedList.forEach((item) => {
@@ -29,6 +30,7 @@ const SearchFilters = ({ id, options, isObject, handleChange }) => {
       onSelect={handleSelect}
       onRemove={handleDelete}
       displayValue="name"
+      placeholder={placeholder}
     />
   );
 };

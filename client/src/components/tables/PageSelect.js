@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import './PageSelect.css';
 
 const PageSelect = ({ totalPages, currentPage, setCurrentPage }) => {
   const [pageBtnValues, setPageBtnValues] = useState([]);

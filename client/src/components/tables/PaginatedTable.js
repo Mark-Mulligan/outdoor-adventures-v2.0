@@ -16,18 +16,22 @@ import './PaginatedTable.css';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+    color: 'rgb(255, 255, 255)',
+    fontSize: '1rem',
   },
   body: {
-    fontSize: 14,
+    fontSize: '1rem',
   },
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
     '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: 'rgba(225, 225, 225, 0.9)',
+    },
+    '&:nth-of-type(even)': {
+      backgroundColor: 'rgba(255, 255, 255, 0.9)',
     },
   },
 }))(TableRow);
@@ -36,10 +40,8 @@ const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
-  pageButton: {
-    width: 30,
-    display: 'inline-block',
-    textAlign: 'center',
+  tableContainer: {
+    backgroundColor: 'rgba(0, 0, 0, 0)',
   },
 });
 
@@ -164,7 +166,7 @@ const PaginatedTable = () => {
         </div>
         <div className="col-md-4 col-12 mb-4">
           <label htmlFor="states-select">States Filter</label>
-          <SearchFilters id="states-select" options={stateList} handleChange={setStates} />
+          <SearchFilters id="states-select" options={stateList} handleChange={setStates} placeholder="States Filter" />
         </div>
         <div className="col-md-4 col-12 mb-4">
           <label htmlFor="designation-select">Designation Filters</label>
@@ -173,10 +175,11 @@ const PaginatedTable = () => {
             options={designationList}
             isObject={false}
             handleChange={setDesignations}
+            placeholder="Designation Filter"
           />
         </div>
       </div>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className={classes.tableContainer}>
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
@@ -200,6 +203,7 @@ const PaginatedTable = () => {
               ))}
           </TableBody>
         </Table>
+
         <TablePagination
           entryStart={entryStart}
           entryEnd={entryEnd}

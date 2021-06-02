@@ -1,3 +1,11 @@
+.light-grey-background {
+  background: rgba(215, 215, 215, 0.9);
+}
+
+.white-background {
+  background: rgba(255, 255, 255, 0.9);
+}
+
 .paginated-select {
   padding: 3px !important;
 }
@@ -15,6 +23,10 @@
   margin-top: auto;
   margin-bottom: auto;
   margin-right: 5px;
+}
+
+.pagination-section {
+  min-width: 700px;
 }
 
 .page-btns-container {

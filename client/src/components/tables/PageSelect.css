@@ -1,0 +1,11 @@
+@media (max-width: 365px) {
+  .page-item {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .page-item {
+    font-size: 0.58rem;
+  }
+}
