@@ -11,7 +11,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Select from 'react-select';
 
-import SearchFilters from '../inputs/SearchFilters';
 import TablePagination from './TablePagination';
 
 import './PaginatedTable.css';
@@ -182,7 +181,9 @@ const PaginatedTable = () => {
     <div className="container-fluid parks-table-container">
       <div className="row">
         <div className="col-md-4 col-12 mb-4">
-          <label htmlFor="parkname-input">Park Name</label>
+          <label htmlFor="parkname-input" className="visually-hidden">
+            Park Name
+          </label>
           <input
             value={parkName}
             onChange={onInputChange}
@@ -194,12 +195,28 @@ const PaginatedTable = () => {
           />
         </div>
         <div className="col-md-4 col-12 mb-4">
-          <label htmlFor="states-select">States Filter</label>
-          <Select options={stateList} isMulti onChange={onStateSelectChange} />
+          <label htmlFor="states-select" className="visually-hidden">
+            States Filter
+          </label>
+          <Select
+            name="states-select"
+            placeholder="Filter by State(s)"
+            options={stateList}
+            isMulti
+            onChange={onStateSelectChange}
+          />
         </div>
         <div className="col-md-4 col-12 mb-4">
-          <label htmlFor="designation-select">Designation Filters</label>
-          <Select options={designationList} isMulti onChange={onDesignationSelectChange} />
+          <label htmlFor="designation-select" className="visually-hidden">
+            Designation Filters
+          </label>
+          <Select
+            name="designation-select"
+            placeholder="Filter by Deisgnation(s)"
+            options={designationList}
+            isMulti
+            onChange={onDesignationSelectChange}
+          />
         </div>
       </div>
       <TableContainer component={Paper} className={classes.tableContainer}>
