@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -9,6 +9,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Select from 'react-select';
 
 import SearchFilters from '../inputs/SearchFilters';
 import TablePagination from './TablePagination';
@@ -47,24 +48,25 @@ const useStyles = makeStyles({
 });
 
 const stateList = [
-  { name: 'Texas', id: 'tx' },
-  { name: 'Florida', id: 'fl' },
-  { name: 'New Mexico', id: 'nm' },
-  { name: 'Oklahoma', id: 'ok' },
-  { name: 'Utah', id: 'ut' },
-  { name: 'Nevada', id: 'nv' },
+  { value: 'tx', label: 'Texas' },
+  { value: 'fl', label: 'Florida' },
+  { value: 'nm', label: 'New Mexico' },
+  { value: 'ok', label: 'Oklahoma' },
+  { value: 'ut', label: 'Utah' },
+  { value: 'nv', label: 'Nevada' },
 ];
+
 const designationList = [
-  'national park',
-  'national historical park',
-  'national monument',
-  'national historic trail',
-  'national historic area',
-  'national historic site',
-  'national battefield',
-  'park',
-  'national memorial',
-  'national seashore',
+  { value: 'national park', label: 'national park' },
+  { value: 'national historical park', label: 'national historical park' },
+  { value: 'national monument', label: 'national monument' },
+  { value: 'national historic trail', label: 'national historic trail' },
+  { value: 'national historic area', label: 'national historic area' },
+  { value: 'national historic site', label: 'national historic site' },
+  { value: 'naotional battlefield', label: 'national battlefiled' },
+  { value: 'park', label: 'park' },
+  { value: 'national memorial', label: 'national memorial' },
+  { value: 'national seashore', label: 'national seashore' },
 ];
 
 const debounceFunction = (func, delay) => {
@@ -78,14 +80,6 @@ const debounceFunction = (func, delay) => {
     }, delay);
   };
 };
-
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
 
 const PaginatedTable = () => {
   const classes = useStyles();
@@ -102,8 +96,6 @@ const PaginatedTable = () => {
   const [entryEnd, setEntryEnd] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [resultLimit, setResultLimit] = useState(10);
-
-  //const prevDebouncedParkName = usePrevious(debouncedParkName) || '';
 
   const getParksData = useCallback(async (page, limit, states, designation, parkQuery) => {
     let apiRequestStr = `/api/parks/test?page=${page}&limit=${limit}`;
@@ -164,6 +156,28 @@ const PaginatedTable = () => {
     [debouncedSearch],
   );
 
+  const onStateSelectChange = (inputData) => {
+    const result = [];
+    if (inputData.length >= 1) {
+      inputData.forEach((item) => {
+        result.push(item.value);
+      });
+    }
+    setCurrentPage(1);
+    setStates(result);
+  };
+
+  const onDesignationSelectChange = (inputData) => {
+    const result = [];
+    if (inputData.length >= 1) {
+      inputData.forEach((item) => {
+        result.push(item.value);
+      });
+    }
+    setCurrentPage(1);
+    setDesignations(result);
+  };
+
   return (
     <div className="container-fluid parks-table-container">
       <div className="row">
@@ -181,17 +195,11 @@ const PaginatedTable = () => {
         </div>
         <div className="col-md-4 col-12 mb-4">
           <label htmlFor="states-select">States Filter</label>
-          <SearchFilters id="states-select" options={stateList} handleChange={setStates} placeholder="States Filter" />
+          <Select options={stateList} isMulti onChange={onStateSelectChange} />
         </div>
         <div className="col-md-4 col-12 mb-4">
           <label htmlFor="designation-select">Designation Filters</label>
-          <SearchFilters
-            id="designation-select"
-            options={designationList}
-            isObject={false}
-            handleChange={setDesignations}
-            placeholder="Designation Filter"
-          />
+          <Select options={designationList} isMulti onChange={onDesignationSelectChange} />
         </div>
       </div>
       <TableContainer component={Paper} className={classes.tableContainer}>
