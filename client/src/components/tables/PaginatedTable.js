@@ -245,7 +245,7 @@ const PaginatedTable = ({ history }) => {
                 <StyledTableRow
                   key={park.parkcode}
                   className={classes.tableRow}
-                  onClick={(e) => console.log(park.parkcode)}
+                  onClick={() => onTableRowClick(park.parkcode)}
                 >
                   <StyledTableCell component="th" scope="row">
                     {park.fullname}
