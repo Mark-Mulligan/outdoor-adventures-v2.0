@@ -44,6 +44,12 @@ const useStyles = makeStyles({
   tableContainer: {
     backgroundColor: 'rgba(0, 0, 0, 0)',
   },
+  tableRow: {
+    '&:hover': {
+      backgroundColor: 'rgba(180, 180, 180, 0.9)',
+      cursor: 'pointer',
+    },
+  },
 });
 
 const stateList = [
@@ -80,7 +86,7 @@ const debounceFunction = (func, delay) => {
   };
 };
 
-const PaginatedTable = () => {
+const PaginatedTable = ({ history }) => {
   const classes = useStyles();
 
   const [designations, setDesignations] = useState([]);
@@ -177,6 +183,10 @@ const PaginatedTable = () => {
     setDesignations(result);
   };
 
+  const onTableRowClick = (parkcode) => {
+    history.push(`/parks/${parkcode}`);
+  };
+
   return (
     <div className="container-fluid parks-table-container">
       <div className="row">
@@ -232,7 +242,11 @@ const PaginatedTable = () => {
           <TableBody>
             {parkData.length > 0 &&
               parkData.map((park) => (
-                <StyledTableRow key={park.parkcode}>
+                <StyledTableRow
+                  key={park.parkcode}
+                  className={classes.tableRow}
+                  onClick={(e) => console.log(park.parkcode)}
+                >
                   <StyledTableCell component="th" scope="row">
                     {park.fullname}
                   </StyledTableCell>
