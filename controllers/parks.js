@@ -1,4 +1,5 @@
 /* eslint-disable object-curly-newline */
+require('dotenv').config();
 const axios = require('axios');
 
 const connection = require('../config/connection');
@@ -88,8 +89,13 @@ exports.getParks = async (req, res) => {
 };
 
 exports.getParkInfo = async (req, res) => {
+  const parkCode = req.params.parkcode;
+  console.log('parkcode', parkCode);
+
   try {
-    const response = axios.get('');
+    const response = axios.get(
+      `https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&api_key=${process.env.NATIONAL_PARKS_APIKEY}`,
+    );
     console.log(response);
     res.status(200).json({ data: response });
   } catch (err) {

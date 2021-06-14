@@ -103,7 +103,7 @@ const PaginatedTable = ({ history }) => {
   const [resultLimit, setResultLimit] = useState(10);
 
   const getParksData = useCallback(async (page, limit, states, designation, parkQuery) => {
-    let apiRequestStr = `/api/parks/test?page=${page}&limit=${limit}`;
+    let apiRequestStr = `/api/parks?page=${page}&limit=${limit}`;
 
     if (states.length > 0) {
       apiRequestStr += `&states=${states.join(',')}`;
