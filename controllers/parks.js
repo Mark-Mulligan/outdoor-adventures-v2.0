@@ -1,4 +1,6 @@
 /* eslint-disable object-curly-newline */
+const axios = require('axios');
+
 const connection = require('../config/connection');
 
 const formatQueryData = (data, totalResults, limit, endIndex, page) => {
@@ -82,5 +84,16 @@ exports.getParks = async (req, res) => {
     res.status(200).json(data);
   } catch (e) {
     console.log(e);
+  }
+};
+
+exports.getParkInfo = async (req, res) => {
+  try {
+    const response = axios.get('');
+    console.log(response);
+    res.status(200).json({ data: response });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'data could not be fetched' });
   }
 };

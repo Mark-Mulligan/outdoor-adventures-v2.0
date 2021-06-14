@@ -23,39 +23,6 @@ connection.connect((err) => {
   console.log(`connected as id ${connection.threadId}`);
 });
 
-app.get('/api/parks', (req, res) => {
-  const limit = parseInt(req.query.limit, 10);
-  const page = parseInt(req.query.page, 10);
-
-  const offset = (page - 1) * limit;
-  const endIndex = page * limit;
-
-  const queryString = `SELECT *, count(*) OVER() AS results from parks LIMIT ${limit} OFFSET ${offset};`;
-  connection.query(queryString, (error, result) => {
-    if (error) throw error;
-
-    const data = {};
-    data.totalPages = Math.ceil(result[0].results / limit);
-
-    if (endIndex < result[0].results) {
-      data.next = {
-        page: page + 1,
-        limit,
-      };
-    }
-
-    if (page - 1 > 0) {
-      data.previous = {
-        page: page - 1,
-        limit,
-      };
-    }
-
-    data.results = result;
-    res.status(200).json(data);
-  });
-});
-
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
