@@ -95,7 +95,6 @@ exports.getParkInfo = async (req, res) => {
     const { data } = await axios.get(
       `https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&api_key=${process.env.NATIONAL_PARKS_APIKEY}`,
     );
-    console.log(data.data);
     res.status(200).json(data.data);
   } catch (err) {
     console.log(err);
