@@ -1,3 +1,19 @@
+.park-page-background {
+  background-image: url('./images/canyon.jpg');
+  background-size: cover;
+  background-position: center;
+  padding-top: 40px;
+  min-height: 100vh;
+}
+
+.park-info-container {
+  background: rgba(200, 200, 200, 0.8);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: grid;
+  grid-template-columns: 400px auto;
+}
+
 .parks-page-background {
   background-image: url('./images/cliffsAndRoad.jpg');
   background-size: cover;

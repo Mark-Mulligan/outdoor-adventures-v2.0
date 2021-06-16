@@ -58,11 +58,29 @@ const ParkPage = () => {
     getParkData();
   }, [getParkData]);
 
+  const renderEntranceFeeInfo = () => {
+    return parkData.entreeFees.map((fee) => {
+      return (
+        <div>
+          <h3>{fee.title}</h3>
+          <p>{fee.description}</p>
+          <p>{fee.cost}</p>
+        </div>
+      );
+    });
+  };
+
   return (
-    <div>
-      <div className="container">
-        <h1 className="text-center">{parkData?.name}</h1>
-        {images.length > 0 && <ImageGallery items={images} showFullscreenButton={false} />}
+    <div className="park-page-background">
+      <div className="container park-info-container">
+        <div></div>
+        <div className="container">
+          <h1 className="text-center">{parkData?.name}</h1>
+          <h3>Description</h3>
+          <p>{parkData?.description}</p>
+          <h3>Entrance Fees</h3>
+          {parkData.entreeFees && renderEntranceFeeInfo()}
+        </div>
       </div>
     </div>
   );
