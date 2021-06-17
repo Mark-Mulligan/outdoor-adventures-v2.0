@@ -61,7 +61,7 @@ const ParkPage = () => {
   const renderEntranceFeeInfo = () => {
     return parkData.entreeFees.map((fee) => {
       return (
-        <div>
+        <div className="park-info">
           <h3>{fee.title}</h3>
           <p>{fee.description}</p>
           <p>{fee.cost}</p>
