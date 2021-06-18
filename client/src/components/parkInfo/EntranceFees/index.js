@@ -1,9 +1,16 @@
-const EntranceFees = ({ title, description, cost }) => {
+const EntranceFees = ({ feeData }) => {
   return (
-    <div className="park-info">
-      <p>{title}</p>
-      <p>{description}</p>
-      <p>{cost}</p>
+    <div>
+      <h3>Entrance Fees</h3>
+      {feeData.map((fee) => {
+        return (
+          <div key={fee.title} className="fee-info">
+            <p>{fee.title}</p>
+            <p>{fee.description}</p>
+            <p>{fee.cost}</p>
+          </div>
+        );
+      })}
     </div>
   );
 };

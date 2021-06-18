@@ -4,6 +4,7 @@ import axios from 'axios';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';
 
+import Description from '../components/parkInfo/Description';
 import EntranceFees from '../components/parkInfo/EntranceFees';
 
 const images = [
@@ -66,13 +67,8 @@ const ParkPage = () => {
         <div></div>
         <div className="container">
           <h1 className="text-center">{parkData?.name}</h1>
-          <h3>Description</h3>
-          <p>{parkData?.description}</p>
-          <h3>Entrance Fees</h3>
-          {parkData.entranceFees &&
-            parkData.entranceFees.map((fee) => (
-              <EntranceFees title={fee.title} description={fee.description} cost={fee.cost} />
-            ))}
+          <Description parkDescription={parkData?.description} />
+          {parkData.entranceFees && <EntranceFees feeData={parkData?.entranceFees} />}
         </div>
       </div>
     </div>
