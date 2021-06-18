@@ -6,6 +6,7 @@ import ImageGallery from 'react-image-gallery';
 
 import Description from '../components/parkInfo/Description';
 import EntranceFees from '../components/parkInfo/EntranceFees';
+import Hours from '../components/parkInfo/Hours';
 
 const images = [
   {
@@ -66,9 +67,10 @@ const ParkPage = () => {
       <div className="container park-info-container">
         <div></div>
         <div className="container">
-          <h1 className="text-center">{parkData?.name}</h1>
+          <h1 className="text-center">{parkData?.fullName}</h1>
           <Description parkDescription={parkData?.description} />
           {parkData.entranceFees && <EntranceFees feeData={parkData?.entranceFees} />}
+          {parkData.operatingHours && <Hours operatingHours={parkData?.operatingHours} />}
         </div>
       </div>
     </div>
