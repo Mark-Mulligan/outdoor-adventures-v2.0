@@ -4,6 +4,8 @@ import axios from 'axios';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';
 
+import EntranceFees from '../components/parkInfo/EntranceFees';
+
 const images = [
   {
     original: 'https://picsum.photos/id/1018/1000/600/',
@@ -41,7 +43,7 @@ const ParkPage = () => {
   const getParkData = useCallback(async () => {
     try {
       const { data } = await axios.get(`/api/parks/${parkcode}`);
-      console.log(data);
+      console.log(data[0]);
       setParkData(data[0]);
     } catch (err) {
       console.log(err);
@@ -58,18 +60,6 @@ const ParkPage = () => {
     getParkData();
   }, [getParkData]);
 
-  const renderEntranceFeeInfo = () => {
-    return parkData.entreeFees.map((fee) => {
-      return (
-        <div className="park-info">
-          <h3>{fee.title}</h3>
-          <p>{fee.description}</p>
-          <p>{fee.cost}</p>
-        </div>
-      );
-    });
-  };
-
   return (
     <div className="park-page-background">
       <div className="container park-info-container">
@@ -79,7 +69,10 @@ const ParkPage = () => {
           <h3>Description</h3>
           <p>{parkData?.description}</p>
           <h3>Entrance Fees</h3>
-          {parkData.entreeFees && renderEntranceFeeInfo()}
+          {parkData.entranceFees &&
+            parkData.entranceFees.map((fee) => (
+              <EntranceFees title={fee.title} description={fee.description} cost={fee.cost} />
+            ))}
         </div>
       </div>
     </div>
