@@ -8,6 +8,7 @@ import Description from '../components/parkInfo/Description';
 import EntranceFees from '../components/parkInfo/EntranceFees';
 import Hours from '../components/parkInfo/Hours';
 import Actvities from '../components/parkInfo/Activites';
+import Contact from '../components/parkInfo/Contact';
 
 const images = [
   {
@@ -73,6 +74,7 @@ const ParkPage = () => {
           {parkData.entranceFees && <EntranceFees feeData={parkData?.entranceFees} />}
           {parkData.operatingHours && <Hours operatingHours={parkData?.operatingHours} />}
           {parkData.activities && <Actvities activities={parkData?.activities} />}
+          {parkData.contacts && <Contact contactInfo={parkData.contacts} />}
         </div>
       </div>
     </div>
