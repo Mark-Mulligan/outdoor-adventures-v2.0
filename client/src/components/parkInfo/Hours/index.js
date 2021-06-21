@@ -25,7 +25,7 @@ const Hours = ({ operatingHours }) => {
             <ul>
               {operatingHours[0].exceptions.map((exception) => {
                 return (
-                  <li key={exception.name}>
+                  <li key={exception.startDate}>
                     {exception.name} ({exception.startDate}) {exception.exceptionHours.monday}
                   </li>
                 );

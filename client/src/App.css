@@ -11,7 +11,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
   display: grid;
-  grid-template-columns: 400px auto;
+  grid-template-columns: 300px auto;
 }
 
 .parks-page-background {
