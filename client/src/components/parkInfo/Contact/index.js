@@ -8,6 +8,14 @@ const Contact = ({ contactInfo }) => {
           <p key={email.emailAddress}>{email.emailAddress}</p>
         ))}
       </div>
+      <div>
+        <p>Phone</p>
+        {contactInfo.phoneNumbers
+          .filter((number) => number.type === 'Voice')
+          .map((result) => {
+            return <p key={result.phoneNumber}>{result.phoneNumber}</p>;
+          })}
+      </div>
     </div>
   );
 };
