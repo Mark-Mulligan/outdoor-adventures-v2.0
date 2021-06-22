@@ -1,18 +1,44 @@
+ol,
+ul {
+  list-style: none;
+}
+
+.no-space-list {
+  padding-left: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
 .park-page-background {
   background-image: url('./images/canyon.jpg');
   background-size: cover;
   background-position: center;
   padding-top: 40px;
-  min-height: 100vh;
   padding-bottom: 40px;
+  min-height: 100vh;
 }
 
 .park-info-container {
-  background: rgba(200, 200, 200, 0.8);
+  background: rgba(204, 188, 188, 0.8);
   padding-top: 10px;
   padding-bottom: 10px;
   display: grid;
   grid-template-columns: 300px auto;
+  max-height: calc(100vh - 80px);
+  overflow: scroll;
+}
+
+.park-left-nav-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.park-left-nav {
+  position: fixed;
 }
 
 .parks-page-background {

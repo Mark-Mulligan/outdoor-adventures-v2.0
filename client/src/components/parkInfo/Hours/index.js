@@ -9,7 +9,7 @@ const Hours = ({ operatingHours }) => {
         <div className="row">
           <div className="col">
             <p>Standard Hours</p>
-            <ol>
+            <ol className="no-space-list">
               {days.map((day) => {
                 return (
                   <li key={day}>
@@ -22,7 +22,7 @@ const Hours = ({ operatingHours }) => {
 
           <div className="col">
             <p>Holiday Hours</p>
-            <ul>
+            <ul className="no-space-list">
               {operatingHours[0].exceptions.map((exception) => {
                 return (
                   <li key={exception.startDate}>
