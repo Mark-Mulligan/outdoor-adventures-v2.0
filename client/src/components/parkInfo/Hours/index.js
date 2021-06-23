@@ -19,31 +19,31 @@ const Hours = ({ operatingHours }) => {
         {operatingHours.map((setOfHours) => {
           return (
             <div key={setOfHours.description} className="row">
-              <p>{setOfHours.description}</p>
+              <h5 className="fst-italic mt-2 mb-3">{setOfHours.description}</h5>
               <div className="col">
-                <p>Standard Hours</p>
+                <h6 className="fw-bold">Standard Hours</h6>
                 <ol className="no-space-list">
                   {days.map((day) => {
                     return (
                       <li key={day.value}>
-                        <span className="day-span">{day.value}</span>
-                        <span>{operatingHours[0].standardHours[day.accessor]}</span>
+                        <span className="day-span fw-light">{day.value}</span>
+                        <span className="fw-light">{operatingHours[0].standardHours[day.accessor]}</span>
                       </li>
                     );
                   })}
                 </ol>
               </div>
               <div className="col">
-                <p>Holiday Hours</p>
+                <h6 className="fw-bold">Holiday Hours</h6>
                 <ul className="no-space-list">
                   {setOfHours.exceptions.map((exception) => {
                     return (
                       <li key={exception.startDate}>
-                        <div>{exception.name}</div>
-                        <div>
+                        <div className="fst-italic">{exception.name}</div>
+                        <div className="fw-light">
                           {exception.startDate} - {exception.endDate}
                         </div>
-                        <div>{exception.exceptionHours.monday}</div>
+                        <div className="fw-light">{exception.exceptionHours.monday}</div>
                       </li>
                     );
                   })}
