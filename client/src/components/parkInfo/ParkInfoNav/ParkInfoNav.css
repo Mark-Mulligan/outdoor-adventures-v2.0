@@ -1,7 +1,19 @@
+.park-left-nav {
+  position: fixed;
+  margin-top: calc(2.375rem + 1.4vw);
+}
+
 .park-left-nav li {
   font-size: 1.5rem;
+  padding-bottom: 20px;
 }
 
 .park-left-nav a {
   text-decoration: none;
+  color: inherit;
+  padding: 2px;
+}
+
+.park-left-nav a:hover {
+  color: rgb(50, 50, 50);
 }

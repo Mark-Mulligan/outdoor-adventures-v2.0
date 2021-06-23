@@ -18,6 +18,9 @@ const ParkInfoNav = () => {
       <li>
         <a href="#contact">Contact Info</a>
       </li>
+      <li>
+        <a href="#photos">Photos</a>
+      </li>
     </ul>
   );
 };

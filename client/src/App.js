@@ -8,13 +8,11 @@ import ParkPage from './pages/ParkPage';
 
 function App() {
   return (
-    <Typography component="div" className="app">
-      <BrowserRouter>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/parks" component={ParksPage} />
-        <Route exact path="/parks/:parkcode" component={ParkPage} />
-      </BrowserRouter>
-    </Typography>
+    <BrowserRouter>
+      <Route exact path="/" component={LandingPage} />
+      <Route exact path="/parks" component={ParksPage} />
+      <Route exact path="/parks/:parkcode" component={ParkPage} />
+    </BrowserRouter>
   );
 }
 
