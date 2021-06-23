@@ -1,7 +1,8 @@
 const Contact = ({ contactInfo }) => {
   return (
-    <div className="container">
-      <h3>Contact Info</h3>
+    <div id="contact" className="container info-section">
+      <h2>Contact Info</h2>
+      <hr />
       <div className="row">
         <div className="col">
           {contactInfo.phoneNumbers

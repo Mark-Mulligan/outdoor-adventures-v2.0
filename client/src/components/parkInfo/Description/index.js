@@ -1,7 +1,8 @@
 const Description = ({ parkDescription }) => {
   return (
-    <div className="container">
-      <h3>Description</h3>
+    <div id="description" className="container info-section">
+      <h2>Description</h2>
+      <hr />
       <p>{parkDescription}</p>
     </div>
   );

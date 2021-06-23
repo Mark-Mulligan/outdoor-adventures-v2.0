@@ -1,3 +1,7 @@
 .park-left-nav li {
   font-size: 1.5rem;
 }
+
+.park-left-nav a {
+  text-decoration: none;
+}

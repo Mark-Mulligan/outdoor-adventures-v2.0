@@ -22,7 +22,7 @@ li {
 }
 
 .park-info-container {
-  background: rgba(204, 188, 188, 0.9);
+  background: rgba(204, 188, 188, 0.92);
   padding-top: 25px;
   padding-bottom: 10px;
   display: grid;
@@ -30,6 +30,10 @@ li {
   max-height: calc(100vh - 80px);
   overflow: scroll;
   border-radius: 10px;
+}
+
+.info-section {
+  margin-bottom: 2rem;
 }
 
 .park-left-nav-container {

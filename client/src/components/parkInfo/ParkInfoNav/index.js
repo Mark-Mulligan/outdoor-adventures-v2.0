@@ -4,19 +4,19 @@ const ParkInfoNav = () => {
   return (
     <ul className="park-left-nav no-space-list">
       <li>
-        <a>Description</a>
+        <a href="#description">Description</a>
       </li>
       <li>
-        <a>Entrance Fees</a>
+        <a href="#entrance-fees">Entrance Fees</a>
       </li>
       <li>
-        <a>Hours</a>
+        <a href="#hours">Hours</a>
       </li>
       <li>
-        <a>Actvities</a>
+        <a href="#activites">Actvities</a>
       </li>
       <li>
-        <a>Contact Info</a>
+        <a href="#contact">Contact Info</a>
       </li>
     </ul>
   );

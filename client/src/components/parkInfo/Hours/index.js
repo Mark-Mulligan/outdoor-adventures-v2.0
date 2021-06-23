@@ -12,14 +12,15 @@ const days = [
 
 const Hours = ({ operatingHours }) => {
   return (
-    <div className="container">
-      <h3>Operating Hours</h3>
+    <div id="hours" className="container info-section">
+      <h2>Operating Hours</h2>
+      <hr />
 
       <div>
         {operatingHours.map((setOfHours) => {
           return (
             <div key={setOfHours.description} className="row">
-              <h5 className="fst-italic mt-2 mb-3">{setOfHours.description}</h5>
+              <h5 className="fst-italic mb-3">{setOfHours.description}</h5>
               <div className="col">
                 <h6 className="fw-bold">Standard Hours</h6>
                 <ol className="no-space-list">
@@ -33,22 +34,24 @@ const Hours = ({ operatingHours }) => {
                   })}
                 </ol>
               </div>
-              <div className="col">
-                <h6 className="fw-bold">Holiday Hours</h6>
-                <ul className="no-space-list">
-                  {setOfHours.exceptions.map((exception) => {
-                    return (
-                      <li key={exception.startDate}>
-                        <div className="fst-italic">{exception.name}</div>
-                        <div className="fw-light">
-                          {exception.startDate} - {exception.endDate}
-                        </div>
-                        <div className="fw-light">{exception.exceptionHours.monday}</div>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
+              {setOfHours.exceptions.length > 0 && (
+                <div className="col">
+                  <h6 className="fw-bold">Holiday Hours</h6>
+                  <ul className="no-space-list">
+                    {setOfHours.exceptions.map((exception) => {
+                      return (
+                        <li key={exception.startDate}>
+                          <div className="fst-italic">{exception.name}</div>
+                          <div className="fw-light">
+                            {exception.startDate} - {exception.endDate}
+                          </div>
+                          <div className="fw-light">{exception.exceptionHours.monday}</div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
             </div>
           );
         })}

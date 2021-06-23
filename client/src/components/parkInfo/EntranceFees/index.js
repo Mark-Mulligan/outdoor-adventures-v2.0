@@ -1,13 +1,15 @@
 const EntranceFees = ({ feeData }) => {
   return (
-    <div className="container">
-      <h3>Entrance Fees</h3>
+    <div id="entrance-fees" className="container info-section">
+      <h2>Entrance Fees</h2>
+      <hr />
       {feeData.map((fee) => {
         return (
           <div key={fee.title} className="fee-info">
-            <p>{fee.title}</p>
+            <h6>
+              <span className="fw-bold">{fee.title}</span> <span className="fst-italic">${fee.cost}</span>
+            </h6>
             <p>{fee.description}</p>
-            <p>{fee.cost}</p>
           </div>
         );
       })}
