@@ -1,6 +1,6 @@
 const EntranceFees = ({ feeData }) => {
   return (
-    <div>
+    <div className="container">
       <h3>Entrance Fees</h3>
       {feeData.map((fee) => {
         return (

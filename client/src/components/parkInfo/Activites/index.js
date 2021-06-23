@@ -1,6 +1,6 @@
 const Actvities = ({ activities }) => {
   return (
-    <div>
+    <div className="container">
       <h3>Activites</h3>
       <ul className="no-space-list">
         {activities.map((activity) => (

@@ -71,7 +71,7 @@ const ParkPage = () => {
         <div className="park-left-nav-container">
           <ParkInfoNav />
         </div>
-        <div className="container park-info">
+        <div className="park-info">
           <h1 className="text-center">{parkData?.fullName}</h1>
           <Description parkDescription={parkData?.description} />
           {parkData.entranceFees && <EntranceFees feeData={parkData?.entranceFees} />}
