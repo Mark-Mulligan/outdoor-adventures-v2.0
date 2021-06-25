@@ -22,9 +22,6 @@ const ParkPhotos = ({ photos }) => {
     photoIndex === 0 ? setPhotoIndex(photos.length - 1) : setPhotoIndex(photoIndex - 1);
   };
 
-  console.log(photos);
-  console.log(photoIndex);
-
   return (
     <div id="photos" className="container">
       <h2>Photos</h2>
