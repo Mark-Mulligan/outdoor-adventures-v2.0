@@ -4,6 +4,7 @@ import './ParkPhotos.css';
 
 const ParkPhotos = ({ photos }) => {
   const [photoIndex, setPhotoIndex] = useState(-1);
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
 
   const formatPhotos = () => {
     return photos.map((photo) => {
@@ -16,6 +17,11 @@ const ParkPhotos = ({ photos }) => {
 
   const handlePhotoClick = (event) => {
     setPhotoIndex(parseInt(event.target.getAttribute('data-photoindex')));
+    setShowPhotoModal(true);
+  };
+
+  const handlePhotoModalClose = () => {
+    setShowPhotoModal(false);
   };
 
   console.log(photos);
@@ -36,7 +42,15 @@ const ParkPhotos = ({ photos }) => {
         ))}
       </div>
 
-      <div>{photoIndex >= 0 && <img src={photos[photoIndex].url} alt={photos[photoIndex.altText]} />}</div>
+      <div id="myModal" className={showPhotoModal ? 'photo-modal' : 'hidden'}>
+        <span onClick={handlePhotoModalClose} class="close">
+          &times;
+        </span>
+        {photoIndex >= 0 && (
+          <img className="modal-content" src={photos[photoIndex].url} alt={photos[photoIndex.altText]} />
+        )}
+        <div id="caption">{photos[photoIndex].caption}</div>
+      </div>
     </div>
   );
 };
