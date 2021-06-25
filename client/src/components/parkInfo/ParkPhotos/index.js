@@ -43,13 +43,16 @@ const ParkPhotos = ({ photos }) => {
       </div>
 
       <div id="myModal" className={showPhotoModal ? 'photo-modal' : 'hidden'}>
-        <span onClick={handlePhotoModalClose} class="close">
+        <span onClick={handlePhotoModalClose} className="close">
           &times;
         </span>
         {photoIndex >= 0 && (
-          <img className="modal-content" src={photos[photoIndex].url} alt={photos[photoIndex.altText]} />
+          <div className="modal-inner-wrapper">
+            <h2 className="text-center">{photos[photoIndex].title}</h2>
+            <img className="photo-modal-content" src={photos[photoIndex].url} alt={photos[photoIndex.altText]} />
+            <div id="caption">{photos[photoIndex].caption}</div>
+          </div>
         )}
-        <div id="caption">{photos[photoIndex].caption}</div>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 .photo-modal {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  padding-top: 60px;
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -16,24 +16,29 @@
   display: none;
 }
 
+.modal-inner-wrapper {
+  color: #ccc;
+}
+
 /* Modal Content (image) */
-.modal-content {
-  margin: auto;
+.photo-modal-content {
   display: block;
-  width: 80%;
-  max-width: 700px;
+  width: auto;
+  height: auto;
+  margin: auto;
+  max-width: 100vw;
+  max-height: 75vh;
+  text-align: center;
 }
 
 /* Caption of Modal Image */
 #caption {
-  margin: auto;
   display: block;
   width: 80%;
   max-width: 700px;
   text-align: center;
-  color: #ccc;
   padding: 10px 0;
-  height: 150px;
+  margin: auto;
 }
 
 /* Add Animation */
@@ -55,8 +60,8 @@
 /* The Close Button */
 .close {
   position: absolute;
-  top: 15px;
-  right: 35px;
+  top: 0;
+  right: 15px;
   color: #f1f1f1;
   font-size: 40px;
   font-weight: bold;
@@ -68,13 +73,6 @@
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px) {
-  .modal-content {
-    width: 100%;
-  }
 }
 
 .hidden {
