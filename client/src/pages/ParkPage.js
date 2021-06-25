@@ -2,7 +2,6 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import 'react-image-gallery/styles/css/image-gallery.css';
-import ImageGallery from 'react-image-gallery';
 
 import Description from '../components/parkInfo/Description';
 import EntranceFees from '../components/parkInfo/EntranceFees';
@@ -12,39 +11,9 @@ import Contact from '../components/parkInfo/Contact';
 import ParkInfoNav from '../components/parkInfo/ParkInfoNav';
 import ParkPhotos from '../components/parkInfo/ParkPhotos';
 
-const images = [
-  {
-    original: 'https://picsum.photos/id/1018/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1018/250/150/',
-  },
-  {
-    original: 'https://picsum.photos/id/1015/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1015/250/150/',
-  },
-  {
-    original: 'https://picsum.photos/id/1019/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1019/250/150/',
-  },
-];
-
 const ParkPage = () => {
   const [parkData, setParkData] = useState([]);
-  const [images, setImages] = useState([]);
   const { parkcode } = useParams();
-
-  const populateCarousel = (inputImgs) => {
-    let result = [];
-    inputImgs.forEach((img) => {
-      let imgData = {};
-      imgData.original = img.url;
-      imgData.thumbnail = img.url;
-      imgData.originalAlt = img.altText;
-      imgData.originalHeight = 300;
-      imgData.originalWidth = 300;
-      result.push(imgData);
-    });
-    setImages(result);
-  };
 
   const getParkData = useCallback(async () => {
     try {
@@ -55,12 +24,6 @@ const ParkPage = () => {
       console.log(err);
     }
   }, [parkcode]);
-
-  useEffect(() => {
-    if (parkData.images) {
-      populateCarousel(parkData.images);
-    }
-  }, [parkData]);
 
   useEffect(() => {
     getParkData();

@@ -52,15 +52,15 @@ const ParkPhotos = ({ photos }) => {
           <div className="modal-inner-wrapper">
             <h2 className="text-center">{photos[photoIndex].title}</h2>
             <div className="photo-wrapper">
-              <div className="right-arrow-col">
-                <IconButton aria-label="right-arrow" className={classes.arrow}>
-                  <NavigateNextIcon fontSize="large" />
-                </IconButton>
+              <div className="arrow-col right">
+                <span className="arrow-wrapper">
+                  <i class="fas fa-3x fa-chevron-right"></i>
+                </span>
               </div>
-              <div className="left-arrow-col">
-                <IconButton aria-label="left-arrow" className={classes.arrow}>
-                  <NavigateBeforeIcon fontSize="large" />
-                </IconButton>
+              <div className="arrow-col left">
+                <span className="arrow-wrapper">
+                  <i class="fas fa-3x fa-chevron-left"></i>
+                </span>
               </div>
 
               <img className="photo-modal-content" src={photos[photoIndex].url} alt={photos[photoIndex.altText]} />

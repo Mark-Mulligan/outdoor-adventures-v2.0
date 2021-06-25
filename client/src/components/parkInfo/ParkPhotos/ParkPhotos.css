@@ -21,6 +21,10 @@
   text-align: center;
 }
 
+.arrow-wrapper {
+  padding: 5px 10px;
+}
+
 /* Modal Content (image) */
 .photo-modal-content {
   display: block;
@@ -38,22 +42,28 @@
   margin: auto;
 }
 
-.right-arrow-col {
+.arrow-col {
   position: absolute;
   display: inline-block;
   height: 100%;
-  right: 0;
   display: flex;
   align-items: center;
 }
 
-.left-arrow-col {
-  position: absolute;
-  display: inline-block;
-  height: 100%;
+.arrow-col:hover {
+  cursor: pointer;
+}
+
+.arrow-col:hover i {
+  color: grey;
+}
+
+.right {
+  right: 0;
+}
+
+.left {
   left: 0;
-  display: flex;
-  align-items: center;
 }
 
 /* Caption of Modal Image */
