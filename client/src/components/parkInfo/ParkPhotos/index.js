@@ -1,19 +1,7 @@
 import { useState } from 'react';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import IconButton from '@material-ui/core/IconButton';
-import { makeStyles } from '@material-ui/core/styles';
-
 import './ParkPhotos.css';
 
-const useStyles = makeStyles((theme) => ({
-  arrow: {
-    color: '#ccc',
-  },
-}));
-
 const ParkPhotos = ({ photos }) => {
-  const classes = useStyles();
   const [photoIndex, setPhotoIndex] = useState(-1);
   const [showPhotoModal, setShowPhotoModal] = useState(false);
 
@@ -26,7 +14,16 @@ const ParkPhotos = ({ photos }) => {
     setShowPhotoModal(false);
   };
 
+  const onRightArrowClick = () => {
+    photoIndex < photos.length - 1 ? setPhotoIndex(photoIndex + 1) : setPhotoIndex(0);
+  };
+
+  const onLeftArrowClick = () => {
+    photoIndex === 0 ? setPhotoIndex(photos.length - 1) : setPhotoIndex(photoIndex - 1);
+  };
+
   console.log(photos);
+  console.log(photoIndex);
 
   return (
     <div id="photos" className="container">
@@ -52,14 +49,14 @@ const ParkPhotos = ({ photos }) => {
           <div className="modal-inner-wrapper">
             <h2 className="text-center">{photos[photoIndex].title}</h2>
             <div className="photo-wrapper">
-              <div className="arrow-col right">
+              <div className="arrow-col right" onClick={onRightArrowClick}>
                 <span className="arrow-wrapper">
-                  <i class="fas fa-3x fa-chevron-right"></i>
+                  <i className="fas fa-3x fa-chevron-right"></i>
                 </span>
               </div>
-              <div className="arrow-col left">
+              <div className="arrow-col left" onClick={onLeftArrowClick}>
                 <span className="arrow-wrapper">
-                  <i class="fas fa-3x fa-chevron-left"></i>
+                  <i className="fas fa-3x fa-chevron-left"></i>
                 </span>
               </div>
 
