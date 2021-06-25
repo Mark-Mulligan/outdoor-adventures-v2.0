@@ -1,4 +1,5 @@
 import Gallery from 'react-grid-gallery';
+import './ParkPhotos.css';
 
 const ParkPhotos = ({ photos }) => {
   const formatPhotos = () => {
@@ -6,8 +7,6 @@ const ParkPhotos = ({ photos }) => {
       return {
         src: photo.url,
         thumbnail: photo.url,
-        thumbnailWidth: 320,
-        thumbnailHeight: 174,
       };
     });
   };
@@ -17,7 +16,11 @@ const ParkPhotos = ({ photos }) => {
   return (
     <div id="photos" className="container">
       <h2>Photos</h2>
-      <Gallery images={formatPhotos()} />
+      <div>
+        {photos.map((photo) => (
+          <img className="grid-image" key={photo.url} src={photo.url} alt={photo.altText} />
+        ))}
+      </div>
     </div>
   );
 };
