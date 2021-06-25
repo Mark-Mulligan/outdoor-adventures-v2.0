@@ -18,6 +18,7 @@
 
 .modal-inner-wrapper {
   color: #ccc;
+  text-align: center;
 }
 
 /* Modal Content (image) */
@@ -31,19 +32,39 @@
   text-align: center;
 }
 
+.photo-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: auto;
+}
+
+.right-arrow-col {
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+.left-arrow-col {
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+
 /* Caption of Modal Image */
-#caption {
-  display: block;
-  width: 80%;
-  max-width: 700px;
+.photo-modal-description {
   text-align: center;
-  padding: 10px 0;
+  max-width: 700px;
   margin: auto;
 }
 
 /* Add Animation */
-.modal-content,
-#caption {
+.modal-inner-wrapper {
   animation-name: zoom;
   animation-duration: 0.6s;
 }

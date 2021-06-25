@@ -1,19 +1,21 @@
 import { useState } from 'react';
-import Gallery from 'react-grid-gallery';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
+
 import './ParkPhotos.css';
 
+const useStyles = makeStyles((theme) => ({
+  arrow: {
+    color: '#ccc',
+  },
+}));
+
 const ParkPhotos = ({ photos }) => {
+  const classes = useStyles();
   const [photoIndex, setPhotoIndex] = useState(-1);
   const [showPhotoModal, setShowPhotoModal] = useState(false);
-
-  const formatPhotos = () => {
-    return photos.map((photo) => {
-      return {
-        src: photo.url,
-        thumbnail: photo.url,
-      };
-    });
-  };
 
   const handlePhotoClick = (event) => {
     setPhotoIndex(parseInt(event.target.getAttribute('data-photoindex')));
@@ -49,8 +51,21 @@ const ParkPhotos = ({ photos }) => {
         {photoIndex >= 0 && (
           <div className="modal-inner-wrapper">
             <h2 className="text-center">{photos[photoIndex].title}</h2>
-            <img className="photo-modal-content" src={photos[photoIndex].url} alt={photos[photoIndex.altText]} />
-            <div id="caption">{photos[photoIndex].caption}</div>
+            <div className="photo-wrapper">
+              <div className="right-arrow-col">
+                <IconButton aria-label="right-arrow" className={classes.arrow}>
+                  <NavigateNextIcon fontSize="large" />
+                </IconButton>
+              </div>
+              <div className="left-arrow-col">
+                <IconButton aria-label="left-arrow" className={classes.arrow}>
+                  <NavigateBeforeIcon fontSize="large" />
+                </IconButton>
+              </div>
+
+              <img className="photo-modal-content" src={photos[photoIndex].url} alt={photos[photoIndex.altText]} />
+            </div>
+            <p className="photo-modal-description">{photos[photoIndex].caption}</p>
           </div>
         )}
       </div>
