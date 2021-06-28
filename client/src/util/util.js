@@ -1,3 +1,13 @@
+export const days = [
+  { accessor: 'monday', value: 'Mon' },
+  { accessor: 'tuesday', value: 'Tue' },
+  { accessor: 'wednesday', value: 'Wed' },
+  { accessor: 'thursday', value: 'Thu' },
+  { accessor: 'friday', value: 'Fri' },
+  { accessor: 'saturday', value: 'Sat' },
+  { accessor: 'sunday', value: 'Sun' },
+];
+
 export const stateList = [
   { value: 'al', label: 'Alabama' },
   { value: 'ak', label: 'Alaska' },

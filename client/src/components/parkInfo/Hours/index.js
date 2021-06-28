@@ -1,14 +1,15 @@
 import './Hours.css';
+import { days } from '../../../util/util';
 
-const days = [
-  { accessor: 'monday', value: 'Mon' },
-  { accessor: 'tuesday', value: 'Tue' },
-  { accessor: 'wednesday', value: 'Wed' },
-  { accessor: 'thursday', value: 'Thu' },
-  { accessor: 'friday', value: 'Fri' },
-  { accessor: 'saturday', value: 'Sat' },
-  { accessor: 'sunday', value: 'Sun' },
-];
+/* Sometimes the date has a start and end date that are the same.  
+This function returns only one date if they are the same or two if they are different. */
+const formatStartAndEndDate = (startDate, endDate) => {
+  if (startDate === endDate) {
+    return startDate;
+  }
+
+  return `${startDate} - ${endDate}`;
+};
 
 const Hours = ({ operatingHours }) => {
   console.log(operatingHours);
@@ -45,7 +46,7 @@ const Hours = ({ operatingHours }) => {
                         <li key={exception.startDate}>
                           <div className="fst-italic">{exception.name}</div>
                           <div className="fw-light">
-                            {exception.startDate} - {exception.endDate}
+                            {formatStartAndEndDate(exception.startDate, exception.endDate)}
                           </div>
                           <div className="fw-light">{exception.exceptionHours.monday}</div>
                         </li>
