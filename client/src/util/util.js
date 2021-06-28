@@ -73,6 +73,11 @@ export const designationList = [
   { value: 'national seashore', label: 'national seashore' },
 ];
 
+export const formatDate = (inputDate) => {
+  let date = new Date(inputDate);
+  return date.toLocaleDateString();
+};
+
 export const debounceFunction = (func, delay) => {
   let timer;
   return function () {

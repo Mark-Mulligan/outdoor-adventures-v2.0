@@ -1,14 +1,15 @@
 import './Hours.css';
-import { days } from '../../../util/util';
+import { days, formatDate } from '../../../util/util';
 
 /* Sometimes the date has a start and end date that are the same.  
 This function returns only one date if they are the same or two if they are different. */
+
 const formatStartAndEndDate = (startDate, endDate) => {
   if (startDate === endDate) {
-    return startDate;
+    return formatDate(startDate);
   }
 
-  return `${startDate} - ${endDate}`;
+  return `${formatDate(startDate)} - ${formatDate(endDate)}`;
 };
 
 const Hours = ({ operatingHours }) => {
