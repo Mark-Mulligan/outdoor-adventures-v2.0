@@ -89,3 +89,11 @@ export const debounceFunction = (func, delay) => {
     }, delay);
   };
 };
+
+export const formatPhoneNum = (phoneNum) => {
+  let phoneArr = phoneNum.split('').filter((item) => !isNaN(item));
+  let areaCode = phoneArr.slice(0, 3).join('');
+  let threeDigits = phoneArr.slice(3, 6).join('');
+  let fourDigits = phoneArr.slice(6).join('');
+  return `${areaCode}-${threeDigits}-${fourDigits}`;
+};

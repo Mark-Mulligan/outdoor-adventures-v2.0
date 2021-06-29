@@ -1,3 +1,5 @@
+import { formatPhoneNum } from '../../../util/util';
+
 const Contact = ({ contactInfo }) => {
   return (
     <div id="contact" className="container info-section">
@@ -8,7 +10,7 @@ const Contact = ({ contactInfo }) => {
           {contactInfo.phoneNumbers
             .filter((number) => number.type === 'Voice')
             .map((result) => {
-              return <p key={result.phoneNumber}>Phone: {result.phoneNumber}</p>;
+              return <p key={result.phoneNumber}>Phone: {formatPhoneNum(result.phoneNumber)}</p>;
             })}
         </div>
         <div className="col">
