@@ -16,7 +16,6 @@ li {
   background-image: url('./images/canyon.jpg');
   background-size: cover;
   background-position: center;
-  padding-top: 40px;
   padding-bottom: 40px;
   min-height: 100vh;
 }

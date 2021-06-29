@@ -10,6 +10,7 @@ import Actvities from '../components/parkInfo/Activites';
 import Contact from '../components/parkInfo/Contact';
 import ParkInfoNav from '../components/parkInfo/ParkInfoNav';
 import ParkPhotos from '../components/parkInfo/ParkPhotos';
+import CustomNav from '../components/navigation/CustomNav';
 
 const ParkPage = () => {
   const [parkData, setParkData] = useState([]);
@@ -31,6 +32,7 @@ const ParkPage = () => {
 
   return (
     <div className="park-page-background">
+      <CustomNav />
       <div className="container park-info-container">
         <div className="park-left-nav-container">
           <ParkInfoNav />
