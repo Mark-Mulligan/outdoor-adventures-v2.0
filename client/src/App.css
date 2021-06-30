@@ -31,6 +31,23 @@ li {
   padding-right: 0 !important;
 }
 
+.loading-container {
+  height: calc(100vh - 80px);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(204, 188, 188, 0.92);
+}
+
+.loading-spinner-wrapper {
+  height: 170px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+}
+
 .park-info {
   background: rgba(204, 188, 188, 0.92);
   padding: 25px 10px;
