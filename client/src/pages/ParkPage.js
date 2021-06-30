@@ -20,11 +20,9 @@ const ParkPage = () => {
     setFetchingData(true);
     try {
       const { data } = await axios.get(`/api/parks/${parkcode}`);
-      setTimeout(() => {
-        console.log(data[0]);
-        setParkData(data[0]);
-        setFetchingData(false);
-      }, 20000);
+      console.log(data[0]);
+      setParkData(data[0]);
+      setFetchingData(false);
     } catch (err) {
       console.log(err);
     }
