@@ -42,8 +42,6 @@ li {
 
 .park-left-nav-container {
   position: relative;
-  display: flex;
-  justify-content: center;
   background-color: rgba(200, 200, 200, 0.9);
 }
 

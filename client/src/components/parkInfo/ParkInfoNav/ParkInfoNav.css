@@ -1,6 +1,10 @@
-.park-left-nav {
+.park-left-nav-wrapper {
   position: fixed;
-  margin-top: calc(2.375rem + 1.4vw);
+  width: inherit !important;
+}
+
+.park-left-nav {
+  width: 100%;
 }
 
 .park-left-nav li {

@@ -33,12 +33,6 @@ const ParkPage = () => {
     <div className="park-page-background">
       <div className="container park-info-container">
         <div className="park-left-nav-container">
-          <div>
-            <Link to="/parks" className="back-link">
-              <i class="fas fa-2x fa-arrow-left"></i>
-            </Link>
-          </div>
-
           <ParkInfoNav />
         </div>
         <div className="park-info">
