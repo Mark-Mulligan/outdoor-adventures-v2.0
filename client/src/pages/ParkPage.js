@@ -25,6 +25,7 @@ const ParkPage = () => {
       setFetchingData(false);
     } catch (err) {
       console.log(err);
+      setFetchingData(false);
     }
   }, [parkcode]);
 
