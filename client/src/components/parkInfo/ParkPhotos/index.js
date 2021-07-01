@@ -46,6 +46,9 @@ const ParkPhotos = ({ photos }) => {
           <div className="modal-inner-wrapper">
             <h2 className="text-center">{photos[photoIndex].title}</h2>
             <div className="photo-wrapper">
+              <img className="photo-modal-content" src={photos[photoIndex].url} alt={photos[photoIndex.altText]} />
+            </div>
+            <div className="photo-modal-controller">
               <div className="arrow-col right" onClick={onRightArrowClick}>
                 <span className="arrow-wrapper">
                   <i className="fas fa-3x fa-chevron-right"></i>
@@ -56,10 +59,13 @@ const ParkPhotos = ({ photos }) => {
                   <i className="fas fa-3x fa-chevron-left"></i>
                 </span>
               </div>
-
-              <img className="photo-modal-content" src={photos[photoIndex].url} alt={photos[photoIndex.altText]} />
+              <div className="photo-modal-description">
+                <p>{photos[photoIndex].caption}</p>
+                <p className="fst-italic fw-lighter">
+                  Photo {photoIndex + 1} of {photos.length}
+                </p>
+              </div>
             </div>
-            <p className="photo-modal-description">{photos[photoIndex].caption}</p>
           </div>
         )}
       </div>
