@@ -6,7 +6,7 @@ const ParkInfoNav = () => {
     <div className="park-left-nav">
       <div className="park-left-nav-top">
         <Link className="back-link" to="/parks">
-          <i class="fas fa-2x fa-arrow-left"></i> Back to parks
+          <i className="fas fa-2x fa-arrow-left"></i> Back to parks
         </Link>
       </div>
 

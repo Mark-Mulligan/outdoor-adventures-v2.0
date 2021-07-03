@@ -29,6 +29,14 @@ li {
   border-radius: 10px;
   padding-left: 0 !important;
   padding-right: 0 !important;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+@media (max-width: 900px) {
+  .park-info-container {
+    display: block;
+  }
 }
 
 .loading-container {
@@ -38,6 +46,8 @@ li {
   align-items: center;
   justify-content: center;
   background: rgba(204, 188, 188, 0.92);
+  margin-right: 5%;
+  margin-left: 5%;
 }
 
 .loading-spinner-wrapper {

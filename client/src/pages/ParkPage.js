@@ -36,7 +36,7 @@ const ParkPage = () => {
   return (
     <div className="park-page-background">
       {fetchingData ? (
-        <div className="container loading-container">
+        <div className="loading-container">
           <div>
             <div className="loading-spinner-wrapper">
               <RingLoader size={150} />
@@ -45,7 +45,7 @@ const ParkPage = () => {
           </div>
         </div>
       ) : (
-        <div className="container park-info-container">
+        <div className="park-info-container">
           <div className="park-left-nav-container">
             <ParkInfoNav />
           </div>
