@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import './ParkInfoNav.css';
 
-const ParkInfoNav = () => {
+const ParkInfoNav = ({ menuOpen }) => {
   return (
-    <div className="park-left-nav">
+    <div className={`park-left-nav ${menuOpen ? 'open' : ''}`}>
       <div className="park-left-nav-top">
         <Link className="back-link" to="/parks">
           <i className="fas fa-2x fa-arrow-left"></i> Back to parks

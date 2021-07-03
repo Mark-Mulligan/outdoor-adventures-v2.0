@@ -14,6 +14,7 @@ import ParkPhotos from '../components/parkInfo/ParkPhotos';
 const ParkPage = () => {
   const [parkData, setParkData] = useState([]);
   const [fetchingData, setFetchingData] = useState(false);
+  const [menuOpen, setOpenMenu] = useState(false);
   const { parkcode } = useParams();
 
   const getParkData = useCallback(async () => {
@@ -47,10 +48,13 @@ const ParkPage = () => {
       ) : (
         <div className="park-info-container">
           <div className="park-left-nav-container">
-            <ParkInfoNav />
+            <ParkInfoNav menuOpen={menuOpen} />
           </div>
           <div className="park-info">
             <h1 className="text-center">{parkData?.fullName}</h1>
+            <button onClick={() => setOpenMenu(!menuOpen)} className="btn btn-outline-dark">
+              Open
+            </button>
             <Description parkDescription={parkData?.description} />
             {parkData.entranceFees && <EntranceFees feeData={parkData?.entranceFees} />}
             {parkData.operatingHours && <Hours operatingHours={parkData?.operatingHours} />}

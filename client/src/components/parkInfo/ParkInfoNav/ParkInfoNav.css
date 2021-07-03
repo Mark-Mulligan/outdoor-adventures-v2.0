@@ -3,6 +3,18 @@
   width: 300px;
 }
 
+@media (max-width: 900px) {
+  .park-left-nav {
+    height: 0px;
+    overflow: hidden;
+    background: rgba(200, 200, 200, 0.9);
+  }
+}
+
+.open {
+  height: calc(100vh - 80px);
+}
+
 .back-link {
   display: flex;
   align-items: center;
