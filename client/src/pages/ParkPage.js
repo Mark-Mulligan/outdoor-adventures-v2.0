@@ -10,6 +10,7 @@ import Actvities from '../components/parkInfo/Activites';
 import Contact from '../components/parkInfo/Contact';
 import ParkInfoNav from '../components/parkInfo/ParkInfoNav';
 import ParkPhotos from '../components/parkInfo/ParkPhotos';
+import Hamburger from '../components/navigation/Hamburger';
 
 const ParkPage = () => {
   const [parkData, setParkData] = useState([]);
@@ -48,6 +49,7 @@ const ParkPage = () => {
       ) : (
         <div className="park-info-container">
           <div className="park-left-nav-container">
+            <Hamburger />
             <ParkInfoNav menuOpen={menuOpen} />
           </div>
           <div className="park-info">

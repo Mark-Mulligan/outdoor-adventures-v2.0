@@ -1,0 +1,23 @@
+.hamburger {
+  width: 2rem;
+  height: 2rem;
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  z-index: 20;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column nowrap;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.hamburger div {
+  width: 2rem;
+  height: 0.25rem;
+  border-radius: 10px;
+  transform-origin: 1px;
+  transition: all 0.3s linear;
+  background: black;
+}
