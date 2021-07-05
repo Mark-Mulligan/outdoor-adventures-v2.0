@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import RingLoader from 'react-spinners/RingLoader';
 
+import Title from '../components/parkInfo/Title';
 import Description from '../components/parkInfo/Description';
 import EntranceFees from '../components/parkInfo/EntranceFees';
 import Hours from '../components/parkInfo/Hours';
@@ -32,7 +33,6 @@ const ParkPage = () => {
   }, [parkcode]);
 
   const handleHamburgerClick = () => {
-    console.log('button clicked');
     setOpenMenu(!menuOpen);
   };
 
@@ -55,10 +55,10 @@ const ParkPage = () => {
         <div className="park-info-container">
           <div className="park-left-nav-container">
             <Hamburger handleHamburgerClick={handleHamburgerClick} menuOpen={menuOpen} />
-            <ParkInfoNav menuOpen={menuOpen} />
+            <ParkInfoNav menuOpen={menuOpen} handleMenuClick={handleHamburgerClick} />
           </div>
           <div className="park-info">
-            <h1 className="text-center">{parkData?.fullName}</h1>
+            {parkData.fullName && <Title parkName={parkData?.fullName} />}
             <Description parkDescription={parkData?.description} />
             {parkData.entranceFees && <EntranceFees feeData={parkData?.entranceFees} />}
             {parkData.operatingHours && <Hours operatingHours={parkData?.operatingHours} />}
