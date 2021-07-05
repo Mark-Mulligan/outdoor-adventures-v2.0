@@ -13,8 +13,6 @@ const formatStartAndEndDate = (startDate, endDate) => {
 };
 
 const Hours = ({ operatingHours }) => {
-  console.log(operatingHours);
-
   return (
     <div id="hours" className="container info-section">
       <h2>Operating Hours</h2>

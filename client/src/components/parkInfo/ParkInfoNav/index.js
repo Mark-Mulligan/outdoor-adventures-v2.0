@@ -32,19 +32,29 @@ const ParkInfoNav = ({ menuOpen, handleMenuClick }) => {
               </a>
             </li>
             <li>
-              <a href="#entrance-fees">Entrance Fees</a>
+              <a onClick={handleMenuClick} href="#entrance-fees">
+                Entrance Fees
+              </a>
             </li>
             <li>
-              <a href="#hours">Hours</a>
+              <a onClick={handleMenuClick} href="#hours">
+                Hours
+              </a>
             </li>
             <li>
-              <a href="#activites">Actvities</a>
+              <a onClick={handleMenuClick} href="#activites">
+                Actvities
+              </a>
             </li>
             <li>
-              <a href="#contact">Contact Info</a>
+              <a onClick={handleMenuClick} href="#contact">
+                Contact Info
+              </a>
             </li>
             <li>
-              <a href="#photos">Photos</a>
+              <a onClick={handleMenuClick} href="#photos">
+                Photos
+              </a>
             </li>
           </ul>
         </div>
