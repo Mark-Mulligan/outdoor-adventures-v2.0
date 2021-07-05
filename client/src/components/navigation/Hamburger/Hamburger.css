@@ -7,14 +7,8 @@
   justify-content: space-around;
   flex-flow: column nowrap;
   position: fixed;
-  transform: translate(15px, 10px);
+  transform: translate(12px, 10px);
   visibility: hidden;
-}
-
-@media (max-width: 900px) {
-  .hamburger {
-    visibility: visible;
-  }
 }
 
 .hamburger div {
@@ -50,4 +44,28 @@
 
 .bottom-line-closed {
   transform: rotate(0);
+}
+
+@media (max-width: 900px) {
+  .hamburger div {
+    width: 1.6rem;
+  }
+
+  .top-line-open {
+    width: 2rem !important;
+  }
+
+  .bottom-line-open {
+    width: 2rem !important;
+  }
+
+  .hamburger {
+    visibility: visible;
+  }
+}
+
+@media (max-width: 500px) {
+  .hamburger {
+    transform: translate(10px, 10px);
+  }
 }
