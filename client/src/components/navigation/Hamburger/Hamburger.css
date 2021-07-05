@@ -8,6 +8,13 @@
   flex-flow: column nowrap;
   position: fixed;
   transform: translate(15px, 10px);
+  visibility: hidden;
+}
+
+@media (max-width: 900px) {
+  .hamburger {
+    visibility: visible;
+  }
 }
 
 .hamburger div {
@@ -17,4 +24,30 @@
   transform-origin: 1px;
   transition: all 0.3s linear;
   background: black;
+}
+
+.top-line-open {
+  transform: rotate(45deg);
+}
+
+.top-line-closed {
+  transform: rotate(0);
+}
+
+.middle-line-open {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.middle-line-closed {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.bottom-line-open {
+  transform: rotate(-45deg);
+}
+
+.bottom-line-closed {
+  transform: rotate(0);
 }

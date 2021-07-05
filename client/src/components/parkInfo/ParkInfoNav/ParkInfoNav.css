@@ -1,18 +1,23 @@
 .park-left-nav {
   position: fixed;
   width: 300px;
+  transition: all 0.3s linear;
 }
 
 @media (max-width: 900px) {
   .park-left-nav {
-    height: 0px;
     overflow: hidden;
     background: rgba(200, 200, 200, 0.9);
+    border-top-left-radius: 10px;
   }
 }
 
-.open {
+.menu-open {
   height: calc(100vh - 80px);
+}
+
+.menu-closed {
+  height: 0;
 }
 
 .back-link {

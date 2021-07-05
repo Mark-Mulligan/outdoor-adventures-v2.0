@@ -31,6 +31,11 @@ const ParkPage = () => {
     }
   }, [parkcode]);
 
+  const handleHamburgerClick = () => {
+    console.log('button clicked');
+    setOpenMenu(!menuOpen);
+  };
+
   useEffect(() => {
     getParkData();
   }, [getParkData]);
@@ -49,14 +54,11 @@ const ParkPage = () => {
       ) : (
         <div className="park-info-container">
           <div className="park-left-nav-container">
-            <Hamburger />
+            <Hamburger handleHamburgerClick={handleHamburgerClick} menuOpen={menuOpen} />
             <ParkInfoNav menuOpen={menuOpen} />
           </div>
           <div className="park-info">
             <h1 className="text-center">{parkData?.fullName}</h1>
-            <button onClick={() => setOpenMenu(!menuOpen)} className="btn btn-outline-dark">
-              Open
-            </button>
             <Description parkDescription={parkData?.description} />
             {parkData.entranceFees && <EntranceFees feeData={parkData?.entranceFees} />}
             {parkData.operatingHours && <Hours operatingHours={parkData?.operatingHours} />}
