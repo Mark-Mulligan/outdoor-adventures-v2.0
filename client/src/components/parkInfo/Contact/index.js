@@ -1,6 +1,7 @@
 import { formatPhoneNum } from '../../../util/util';
+import './Contact.css';
 
-const Contact = ({ contactInfo }) => {
+const Contact = ({ contactInfo, websiteUrl }) => {
   return (
     <div id="contact" className="container info-section">
       <h2>Contact Info</h2>
@@ -17,6 +18,14 @@ const Contact = ({ contactInfo }) => {
           {contactInfo.emailAddresses.map((email) => (
             <p key={email.emailAddress}> Email: {email.emailAddress}</p>
           ))}
+        </div>
+        <div>
+          <p>
+            Website:{' '}
+            <a className="website-link" href={websiteUrl} target="_blank" rel="noreferrer">
+              {websiteUrl} <i class="fas fa-xs fa-external-link-alt"></i>
+            </a>
+          </p>
         </div>
       </div>
     </div>

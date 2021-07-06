@@ -1,0 +1,8 @@
+.website-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.website-link:hover {
+  color: rgb(60, 60, 60);
+}

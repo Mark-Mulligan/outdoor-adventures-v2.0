@@ -63,7 +63,7 @@ const ParkPage = () => {
             {parkData.entranceFees && <EntranceFees feeData={parkData?.entranceFees} />}
             {parkData.operatingHours && <Hours operatingHours={parkData?.operatingHours} />}
             {parkData.activities && <Actvities activities={parkData?.activities} />}
-            {parkData.contacts && <Contact contactInfo={parkData.contacts} />}
+            {parkData.contacts && <Contact contactInfo={parkData.contacts} websiteUrl={parkData.url} />}
             {parkData.images && <ParkPhotos photos={parkData?.images} />}
           </div>
         </div>
