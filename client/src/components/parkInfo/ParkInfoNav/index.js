@@ -19,15 +19,14 @@ const ParkInfoNav = ({ menuOpen, handleMenuClick }) => {
     <>
       {windowWidth < 900 ? (
         <div className={`park-left-nav ${menuOpen ? 'menu-open' : 'menu-closed'}`}>
-          <div className="park-left-nav-top">
-            <Link className="back-link" to="/parks">
-              <i className="fas fa-2x fa-arrow-left"></i> Back to parks
-            </Link>
-          </div>
-
           <ul className="no-space-list">
+            <li className="back-link">
+              <Link to="/parks">
+                <i className="fas fa-sm fa-arrow-left"></i> Back to parks
+              </Link>
+            </li>
             <li>
-              <a onClick={handleMenuClick} href="#description">
+              <a className="nav-link-effect" onClick={handleMenuClick} href="#description">
                 Description
               </a>
             </li>
@@ -60,13 +59,12 @@ const ParkInfoNav = ({ menuOpen, handleMenuClick }) => {
         </div>
       ) : (
         <div className="park-left-nav">
-          <div className="park-left-nav-top">
-            <Link className="back-link" to="/parks">
-              <i className="fas fa-2x fa-arrow-left"></i> Back to parks
-            </Link>
-          </div>
-
           <ul className="no-space-list">
+            <li>
+              <Link className="back-link" to="/parks">
+                <i className="fas fa-2x fa-arrow-left"></i> Back to parks
+              </Link>
+            </li>
             <li>
               <a href="#description">Description</a>
             </li>

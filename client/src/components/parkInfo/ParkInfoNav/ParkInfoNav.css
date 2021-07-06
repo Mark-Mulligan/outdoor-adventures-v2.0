@@ -21,32 +21,29 @@
 }
 
 .back-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
+  border-top-left-radius: 10px;
 }
 
 .back-link i {
   margin-right: 10px;
 }
 
-.park-left-nav-top {
-  padding: 10px;
-}
-
-.park-left-nav li {
-  font-size: 1.5rem;
-  padding-bottom: 20px;
-  text-align: center;
+.park-left-nav li:hover {
+  background: rgba(170, 170, 170, 0.8);
+  cursor: pointer;
 }
 
 .park-left-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
   text-decoration: none;
   color: inherit;
-  padding: 2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .park-left-nav a:hover {
-  color: rgb(50, 50, 50);
+  color: inherit;
 }
