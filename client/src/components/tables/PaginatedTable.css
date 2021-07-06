@@ -2,7 +2,19 @@
   margin-bottom: 5px;
 }
 
+.parks-table-container {
+  max-width: 1200px;
+}
+
 .parkname-input {
   height: 41px;
   padding: 5px;
+}
+
+.search-container {
+  background: rgba(225, 225, 225, 0.87);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding-top: 10px;
 }
