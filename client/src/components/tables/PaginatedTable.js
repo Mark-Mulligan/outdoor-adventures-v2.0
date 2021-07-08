@@ -21,10 +21,11 @@ const StyledTableCell = withStyles((theme) => ({
     backgroundColor: 'rgba(0, 0, 0, 0.9)',
     color: 'rgb(255, 255, 255)',
     fontSize: '1rem',
+    padding: '11px',
   },
   body: {
     fontSize: '1rem',
-    padding: '10px',
+    padding: '9px',
   },
 }))(TableCell);
 
