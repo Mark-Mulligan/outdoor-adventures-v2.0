@@ -7,8 +7,14 @@
   justify-content: space-around;
   flex-flow: column nowrap;
   position: fixed;
-  transform: translate(12px, 10px);
+  transform: translate(5px, 5px);
   visibility: hidden;
+  background: rgba(200, 200, 200, 0.9);
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 38px;
+  width: 2.5rem;
 }
 
 .hamburger div {
@@ -18,6 +24,7 @@
   transform-origin: 1px;
   transition: all 0.3s linear;
   background: black;
+  margin: auto;
 }
 
 .top-line-open {
@@ -52,11 +59,11 @@
   }
 
   .top-line-open {
-    width: 2rem !important;
+    width: 1.81rem !important;
   }
 
   .bottom-line-open {
-    width: 2rem !important;
+    width: 1.81rem !important;
   }
 
   .hamburger {
@@ -65,7 +72,11 @@
 }
 
 @media (max-width: 500px) {
-  .hamburger {
-    transform: translate(10px, 10px);
+  .top-line-open {
+    width: 2.1rem !important;
+  }
+
+  .bottom-line-open {
+    width: 2.1rem !important;
   }
 }

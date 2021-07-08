@@ -162,6 +162,10 @@ const PaginatedTable = ({ history }) => {
         <div className="row">
           <div className="col-12">
             <h1 className="text-center">Search National Parks</h1>
+            <p className="text-center">
+              Search the table by parkname and/or add filters to assist with finding a park. Clicking a row in the table
+              will show you more info about the park selected.
+            </p>
           </div>
           <div className="col-md-4 col-12 mb-4">
             <label htmlFor="parkname-input" className="visually-hidden">
