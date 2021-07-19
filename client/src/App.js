@@ -13,6 +13,11 @@ function App() {
   const checkApiOnline = useCallback(async () => {
     try {
       const response = await axios.get(`/api/testconnection`);
+      if (response.status === 200) {
+        setApiUp(true);
+      } else {
+        setApiUp(false);
+      }
       console.log(response);
     } catch (err) {
       console.log(err);
