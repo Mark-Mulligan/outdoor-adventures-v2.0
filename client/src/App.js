@@ -30,7 +30,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Route exact path="/" component={LandingPage} />
+      <Route exact path="/" render={(props) => <LandingPage {...props} apiUp={apiUp} />} />
       <Route exact path="/parks" component={ParksPage} />
       <Route exact path="/parks/:parkcode" component={ParkPage} />
     </BrowserRouter>
